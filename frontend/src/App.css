@@ -32,6 +32,9 @@ li {
   text-align: center;
   align-content: center;
 }
+li a{
+  color: white;
+}
 
 .content {
   grid-area: content;

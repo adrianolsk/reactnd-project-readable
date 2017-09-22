@@ -1,68 +1,119 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import {Route, Switch} from 'react-router-dom';
+
+class PageList extends Component {
+
+  constructor(){
+    super();
+    this.state = {
+      posts: [
+        {
+          title: "React + Redux",
+          author: "Adriano Skroch",
+          date: new Date(),
+          category: "Redux", 
+          score: 10
+        },
+        {
+          title: "React Fundamentals",
+          author: "Nick Bic",
+          date: new Date(),
+          category: "React",
+          score: 3
+        }
+      ]
+    };
+  }
+
+  render() {
+    const {category} = this.props.match.params
+    let {posts} = this.state;
+    debugger;
+    return (
+      <div className="content-list">    
+       
+        <ListHeader category={category}/>    
+       {posts.map(post => (   <CardPost key={post.title} post={post}></CardPost>))}
+          
+      </div>
+    )}
+}
+
+class CardPost extends Component {
+  render() {
+    let {title, author, date, category, score} = this.props.post;
+    return (
+        <div className="content-card">
+          <div className="card-score">{score}</div>
+          
+          <div className="card-detail">
+            <h3>{title}</h3>
+            <div className="card-author"> <i>by  {author}</i>   </div>
+            <div className="card-date">{date.toString()}</div>
+            <div className="card-category">{category}</div>
+          </div>          
+        </div>
+    );
+  }
+}
+
+class ListHeader extends Component {
+  render() {
+    let {category} = this.props;
+    return (
+      <div className="content-header">
+      <h2>{category || "All"}</h2>
+      <div className="content-actions">
+        <button>Sort by Date</button>
+        <button>Sort By Score</button>
+        <button>New Post</button>
+      </div>
+    </div>
+    );
+  }
+}
+
+class Header extends Component {
+  // todo: lookup how to redirect to page without refreshing the page
+  render() {
+    return(<header>
+      <ul>
+      <li>
+          <a href="/">All</a>
+        </li>
+        <li>
+          <a href="/react">React</a>
+        </li>
+        <li>
+          <a href="/redux">Redux</a>
+        </li>
+        <li>
+          <a href="/udacity">Udacity</a>
+        </li>
+      </ul>
+    </header>);
+  }}
+
+  class Footer extends Component {
+    render() {
+      return(  <footer>footer</footer>);
+    }}
+
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header>
-          <ul>
-            <li>All</li>
-            <li>React</li>
-            <li>Redux</li>
-            <li>Udacity</li>
-          </ul>
-        </header>
-        <div className="content">
-          <div className="content-header">
-            <h2>Redux</h2>
-            <div className="content-actions">
-              <button>Sort by Date</button>
-              <button>Sort By Score</button>
-              <button>New Post</button>
-            </div>
-          </div>
-          <div className="content-list">
-          
-            <div className="content-card">
-             <div className="card-score">2</div>
-              
-              <div className="card-detail">
-                <h3>Redux for noobs</h3>
-                <div className="card-author"> <i>by  Adriano Skroch</i>   </div>
-                <div className="card-date">September 7, 2017</div>
-                <div className="card-category">Redux</div>
-              </div>
-             
-            </div>
-            <div className="content-card">
-             <div className="card-score">2</div>
-              
-              <div className="card-detail">
-                <h3>Redux for noobs</h3>
-                <div className="card-author"> <i>by  Adriano Skroch</i>   </div>
-                <div className="card-date">September 7, 2017</div>
-                <div className="card-category">Redux</div>
-              </div>
-             
-            </div>
-            <div className="content-card">
-             <div className="card-score">2</div>
-              
-              <div className="card-detail">
-                <h3>Redux for noobs</h3>
-                <div className="card-author"> <i>by  Adriano Skroch</i>   </div>
-                <div className="card-date">September 7, 2017</div>
-                <div className="card-category">Redux</div>
-              </div>
-             
-            </div>
-
-
-          </div>
+        <Header/>  
+        <div className="content"> 
+          <Switch>
+            <Route exact path='/' component={PageList} />         
+            <Route exact path='/:category' component={PageList} />        
+          </Switch>         
         </div>
-        <footer>footer</footer>
+      <Footer/>
       </div>
     );
   }
