@@ -46,7 +46,7 @@ class PageList extends Component {
       <div className="content-list">    
      
         <ListHeader category={category}/>    
-       {posts.map(post => (   <CardPost key={post.title} post={post}></CardPost>))}
+       {posts.map(post => (<CardPost key={post.title} post={post}></CardPost>))}
           
       </div>
     )}
