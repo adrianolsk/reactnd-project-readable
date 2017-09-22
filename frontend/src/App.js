@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import {Route, Switch} from 'react-router-dom';
-
+import {Route, Switch, Link} from 'react-router-dom';
+import * as API from './util/api';
+import moment from 'moment';
 class PageList extends Component {
 
   constructor(){
     super();
-    this.state = {
+    this.state = { 
       posts: [
         {
           title: "React + Redux",
@@ -27,13 +28,23 @@ class PageList extends Component {
     };
   }
 
+  componentDidMount(){    
+
+    API.getAllPosts().then(posts=>{     
+      this.setState({
+        posts
+      });
+    });
+
+  }
+
   render() {
     const {category} = this.props.match.params
-    let {posts} = this.state;
+    let {posts } = this.state;
     debugger;
     return (
       <div className="content-list">    
-       
+     
         <ListHeader category={category}/>    
        {posts.map(post => (   <CardPost key={post.title} post={post}></CardPost>))}
           
@@ -41,9 +52,10 @@ class PageList extends Component {
     )}
 }
 
-class CardPost extends Component {
+class CardPost extends Component {  
+
   render() {
-    let {title, author, date, category, score} = this.props.post;
+    let {title, author, timestamp, category, score} = this.props.post;
     return (
         <div className="content-card">
           <div className="card-score">{score}</div>
@@ -51,7 +63,7 @@ class CardPost extends Component {
           <div className="card-detail">
             <h3>{title}</h3>
             <div className="card-author"> <i>by  {author}</i>   </div>
-            <div className="card-date">{date.toString()}</div>
+            <div className="card-date">{moment(timestamp).format('D MMM YYYY, h:mma')}</div>
             <div className="card-category">{category}</div>
           </div>          
         </div>
@@ -77,29 +89,41 @@ class ListHeader extends Component {
 
 class Header extends Component {
   // todo: lookup how to redirect to page without refreshing the page
+  constructor(){
+    super();
+    this.state = {
+      categories: []
+    }
+  }
+  componentDidMount(){
+    API.getCategories().then(categories=>{
+      debugger
+      this.setState({
+        categories: categories
+      });
+    });
+  }
   render() {
+
+    const  {categories} = this.state;
     return(<header>
       <ul>
-      <li>
-          <a href="/">All</a>
-        </li>
         <li>
-          <a href="/react">React</a>
+          <Link to="/" >All</Link> 
         </li>
-        <li>
-          <a href="/redux">Redux</a>
+        {categories.map(item=>(
+          <li key={item.path}>
+          <Link to={"/"+item.path}>{item.name}</Link>         
         </li>
-        <li>
-          <a href="/udacity">Udacity</a>
-        </li>
+        ))}              
       </ul>
     </header>);
   }}
 
-  class Footer extends Component {
-    render() {
-      return(  <footer>footer</footer>);
-    }}
+class Footer extends Component {
+  render() {
+    return(  <footer>footer</footer>);
+}}
 
 
 class App extends Component {
