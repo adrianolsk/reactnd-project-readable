@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import * as API from './util/api';
+
 class ListHeader extends Component {
     render() {
         let {category} = this.props;

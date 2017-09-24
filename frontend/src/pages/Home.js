@@ -1,31 +1,26 @@
-import React, { Component } from 'react';
-import './App.css';
-import * as API from './util/api';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import ListHeader from "../components/ListHeader";
+import CardPost from "../components/CardPost";
+import {getPostsAsync} from "../actions/posts";
 
 class Home extends Component {
 
-    constructor(){
+    constructor() {
         super();
         this.state = {
             posts: []
         };
     }
 
-    componentDidMount(){
-
-        API.getAllPosts().then(posts=>{
-            this.setState({
-                posts
-            });
-        });
-
+    componentDidMount() {
+        this.props.getPosts();
     }
 
     render() {
         const {category} = this.props.match.params
-        let {posts } = this.state;
-        debugger;
+        let {posts} = this.props;
+
         return (
             <div className="content-list">
 
@@ -33,8 +28,19 @@ class Home extends Component {
                 {posts.map(post => (<CardPost key={post.title} post={post}></CardPost>))}
 
             </div>
-        )}
+        )
+    }
 }
 
 
-export default Home;
+const mapStateToProps = (state, props) => ({
+    posts: state.posts
+});
+
+const mapDispatchToProps = dispatch => ({
+    getPosts: () => dispatch(getPostsAsync())
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
+
