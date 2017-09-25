@@ -1,34 +1,27 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import * as API from '../util/api';
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
+import {connect} from "react-redux";
+import {getCategoriesAsync} from "../actions/categories";
 
 class Header extends Component {
-    // todo: lookup how to redirect to page without refreshing the page
-    constructor(){
-        super();
-        this.state = {
-            categories: []
-        }
+
+    componentDidMount() {
+        this.props.getCategories();
     }
-    componentDidMount(){
-        API.getCategories().then(categories=>{
-            debugger
-            this.setState({
-                categories: categories
-            });
-        });
-    }
+
     render() {
 
-        const  {categories} = this.state;
-        return(<header>
+        const {categories} = this.props;
+        return (<header>
             <ul>
                 <li>
-                    <Link to="/" >All</Link>
+                    <NavLink exact to='/' activeClassName="active">All</NavLink>
+
                 </li>
-                {categories.map(item=>(
+                {categories.map(item => (
                     <li key={item.path}>
-                        <Link to={"/"+item.path}>{item.name}</Link>
+                        <NavLink exact activeClassName="active" to={`/${item.path}`}>{item.name}</NavLink>
                     </li>
                 ))}
             </ul>
@@ -36,4 +29,16 @@ class Header extends Component {
     }
 }
 
-export default Header;
+
+const mapStateToProps = (state, props) => ({
+    categories: state.categories
+});
+
+const mapDispatchToProps = dispatch => ({
+    getCategories: () => dispatch(getCategoriesAsync())
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
+
+

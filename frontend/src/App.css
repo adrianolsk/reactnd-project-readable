@@ -110,6 +110,10 @@ button {
   margin: 10px 0 5px 0px;
 }
 
+.active {
+  color: red;
+}
+
 footer {
   grid-area: footer;
 }

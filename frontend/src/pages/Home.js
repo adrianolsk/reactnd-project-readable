@@ -4,28 +4,24 @@ import ListHeader from "../components/ListHeader";
 import CardPost from "../components/CardPost";
 import {getPostsAsync} from "../actions/posts";
 
+//todo: remove debuggers;
 class Home extends Component {
 
-    constructor() {
-        super();
-        this.state = {
-            posts: []
-        };
-    }
 
     componentDidMount() {
         this.props.getPosts();
     }
 
     render() {
-        const {category} = this.props.match.params
+        const {category} = this.props.match.params;
+        debugger;
         let {posts} = this.props;
 
         return (
             <div className="content-list">
 
                 <ListHeader category={category}/>
-                {posts.map(post => (<CardPost key={post.title} post={post}></CardPost>))}
+                {posts.map(post => (<CardPost key={post.id} post={post}/>))}
 
             </div>
         )
