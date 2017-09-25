@@ -20,6 +20,26 @@ export const getAllPosts = () =>
     fetch(`${api}/posts`, {headers})
         .then(res => res.json())
 
+export const getAllPostsFromCategory = (category) =>
+    fetch(`${api}/${category}/posts`, {headers})
+        .then(res => res.json())
+
+export const getPost = (postId) =>
+    fetch(`${api}/posts/${postId}`, {headers})
+        .then(res => res.json())
+
+export const getPostComments = (postId) =>
+    fetch(`${api}/posts/${postId}/comments`, {headers})
+        .then(res => res.json())
+
+
+export const deletePost = (postId) =>
+    fetch(`${api}/posts/${postId}`, {
+        method: 'DELETE',
+        headers: headers
+    }).then(res => res.json())
+        .then(data => data.books)
+
 
 export const create = (post) => {
     const newPost = {...post, id: Date.now().toString(), timestamp: Date.now()};

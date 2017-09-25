@@ -15,8 +15,34 @@ export function getPostsAsync() {
             .then(data => dispatch(getPosts(data)), error => console.error(error))
 }
 
+export function getPostsFromCategoryAsync(category) {
+    return dispatch =>
+        API.getAllPostsFromCategory(category)
+            .then(data => dispatch(getPosts(data)), error => console.error(error))
+}
+
 function getPosts(data) {
     return {type: GET_POSTS, data}
+}
+
+export function getPostAsync(postId) {
+    return dispatch =>
+        API.getPost(postId)
+            .then(data => dispatch(getPost(data)), error => console.error(error))
+}
+
+function getPost(data) {
+    return {type: GET_POST, data}
+}
+
+export function deletePostAsync(postId) {
+    return dispatch =>
+        API.deletePost(postId)
+            .then(data => dispatch(deletePost(data)), error => console.error(error))
+}
+
+function deletePost(data) {
+    return {type: DELETE_POST, data}
 }
 
 

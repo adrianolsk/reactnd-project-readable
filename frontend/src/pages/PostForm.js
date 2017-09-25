@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {createPostsAsync} from "../actions/posts";
+import {Redirect} from "react-router-dom";
 
 class PostForm extends Component {
 
@@ -25,10 +26,14 @@ class PostForm extends Component {
         e.preventDefault();
 
         this.props.createPost({...this.state});
+        this.setState({ fireRedirect: true })
+
     }
 
     render() {
         console.log("State:", this.state);
+        const { from } = this.props.location.state || '/'
+        const { fireRedirect } = this.state;
 
         return (<div>
             <form onSubmit={this.handleSubmit}>
@@ -52,6 +57,9 @@ class PostForm extends Component {
 
                 <button type="submit">salvar</button>
             </form>
+            {fireRedirect && (
+                <Redirect to={from || '/'}/>
+            )}
 
         </div>);
     }

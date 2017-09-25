@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import PostForm from "./pages/PostForm";
+import PostDetail from "./pages/PostDetail";
 
 class App extends Component {
     render() {
@@ -16,6 +17,7 @@ class App extends Component {
                     <Switch>
                         <Route exact path='/' component={Home}/>
                         <Route exact path='/new' component={PostForm}/>
+                        <Route exact path='/:category/:id' component={PostDetail}/>
                         <Route exact path='/:category' component={Home}/>
                     </Switch>
                 </div>

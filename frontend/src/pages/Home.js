@@ -2,19 +2,32 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import ListHeader from "../components/ListHeader";
 import CardPost from "../components/CardPost";
-import {getPostsAsync} from "../actions/posts";
+import {getPostsAsync, getPostsFromCategoryAsync} from "../actions/posts";
 
 //todo: remove debuggers;
 class Home extends Component {
 
 
     componentDidMount() {
-        this.props.getPosts();
+        this.loadData();
+    }
+
+    componentDidUpdate() {
+        this.loadData();
+    }
+
+    loadData() {
+        const {category} = this.props.match.params;
+        if (!category) {
+            this.props.getPosts();
+        } else {
+            this.props.getPostsFromCategory(category);
+        }
     }
 
     render() {
         const {category} = this.props.match.params;
-        debugger;
+
         let {posts} = this.props;
 
         return (
@@ -34,7 +47,8 @@ const mapStateToProps = (state, props) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    getPosts: () => dispatch(getPostsAsync())
+    getPosts: () => dispatch(getPostsAsync()),
+    getPostsFromCategory: (category) => dispatch(getPostsFromCategoryAsync(category)),
 });
 
 
