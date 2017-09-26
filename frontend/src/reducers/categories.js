@@ -1,10 +1,21 @@
-import {GET_CATEGORIES} from '../actions/categories';
+import {GET_CATEGORIES, SET_CATEGORY} from '../actions/categories';
 
-function categories(state = [], action) {
+function categories(state = {
+    list: [],
+    current: ''
+}, action) {
 
     switch (action.type) {
         case GET_CATEGORIES:
-            return action.data;
+            return {
+                ...state,
+                list: action.data
+            };
+            case SET_CATEGORY:
+            return {
+                ...state,
+                current: action.data
+            };
         default:
             return state;
     }

@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import ListHeader from "../components/ListHeader";
 import CardPost from "../components/CardPost";
 import {getPostsAsync, getPostsFromCategoryAsync} from "../actions/posts";
+import {setCategory} from "../actions/categories";
 
 //todo: remove debuggers;
 class Home extends Component {
@@ -18,9 +19,11 @@ class Home extends Component {
 
     loadData() {
         const {category} = this.props.match.params;
+        this.props.setCategory(category);
         if (!category) {
             this.props.getPosts();
         } else {
+
             this.props.getPostsFromCategory(category);
         }
     }
@@ -49,6 +52,7 @@ const mapStateToProps = (state, props) => ({
 const mapDispatchToProps = dispatch => ({
     getPosts: () => dispatch(getPostsAsync()),
     getPostsFromCategory: (category) => dispatch(getPostsFromCategoryAsync(category)),
+    setCategory: (category) => dispatch(setCategory(category))
 });
 
 

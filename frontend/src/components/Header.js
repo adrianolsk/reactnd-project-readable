@@ -11,17 +11,18 @@ class Header extends Component {
     }
 
     render() {
+        debugger;
 
-        const {categories} = this.props;
+        const {categories,currentCategory} = this.props;
         return (<header>
             <ul>
-                <li>
-                    <NavLink exact to='/' activeClassName="active">All</NavLink>
+                <li className={!currentCategory? 'active': ''}>
+                    <Link exact to='/' >All</Link>
 
                 </li>
                 {categories.map(item => (
-                    <li key={item.path}>
-                        <NavLink exact activeClassName="active" to={`/${item.path}`}>{item.name}</NavLink>
+                    <li key={item.path} className={currentCategory === item.path ? 'active': ''}>
+                        <Link  to={`/${item.path}`}>{item.name}</Link>
                     </li>
                 ))}
             </ul>
@@ -31,7 +32,8 @@ class Header extends Component {
 
 
 const mapStateToProps = (state, props) => ({
-    categories: state.categories
+    categories: state.categories.list,
+    currentCategory: state.categories.current,
 });
 
 const mapDispatchToProps = dispatch => ({

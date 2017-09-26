@@ -1,6 +1,7 @@
 import * as API from '../util/api';
 
 export const GET_CATEGORIES = 'GET_CATEGORIES';
+export const SET_CATEGORY = 'SET_CATEGORY';
 
 
 export function getCategoriesAsync() {
@@ -11,4 +12,7 @@ export function getCategoriesAsync() {
 
 function getCategories(data) {
     return {type: GET_CATEGORIES, data}
+}
+export function setCategory(data) {
+    return {type: SET_CATEGORY, data}
 }

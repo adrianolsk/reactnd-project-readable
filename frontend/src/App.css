@@ -112,8 +112,11 @@ button {
     margin: 10px 0 5px 0px;
 }
 
-.active {
-    color: red;
+li.active {
+    background-color: #f1fffd;
+}
+li.active a{
+    color:blue;
 }
 
 form {
