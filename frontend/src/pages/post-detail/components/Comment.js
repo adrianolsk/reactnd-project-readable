@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import moment from "moment";
 
 class Comment extends Component {
 
@@ -8,6 +9,7 @@ class Comment extends Component {
             <div>
                 <p>{comment.author}</p>
                 <span>{comment.body}</span>
+                <span>{moment(comment.timestamp).format('D MMM YYYY, h:mma')}</span>
                 <p>Votes: {comment.voteScore}</p>
                 <button onClick={() => this.props.onDelete(comment.id)}>DELETE</button>
                 <button onClick={() => this.props.onVote(comment.id, 'upVote')}>Vote Up</button>
