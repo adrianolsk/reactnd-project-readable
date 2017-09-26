@@ -7,7 +7,7 @@ class PostForm extends Component {
 
     constructor() {
         super();
-        // Form inputs and controlled components may have some state handled by the component. (from udacity rubric review)
+        // Form inputs and controlled components may have some state handled by the component. (from Udacity rubric review)
         this.state = {
             title: '',
             body: '',

@@ -17,7 +17,7 @@ class Header extends Component {
         return (<header>
             <ul>
                 <li className={!currentCategory? 'active': ''}>
-                    <Link exact to='/' >All</Link>
+                    <Link  to='/' >All</Link>
 
                 </li>
                 {categories.map(item => (

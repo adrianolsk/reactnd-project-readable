@@ -1,10 +1,17 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {createPostsAsync, deletePostAsync, getPostAsync} from "../actions/posts";
-import {getCommentsAsync} from "../actions/comments";
+import {createPostsAsync, deletePostAsync, getPostAsync} from "../../actions/posts";
+import {getCommentsAsync} from "../../actions/comments";
+import CommentForm from "./components/CommentForm";
+import CommentList from "./components/CommentList";
 
 class PostDetail extends Component {
 
+
+    constructor() {
+        super();
+        this.state = {};
+    }
 
     componentDidMount() {
         const {id} = this.props.match.params;
@@ -21,6 +28,11 @@ class PostDetail extends Component {
         this.props.deletePost(post.id);
     }
 
+
+    //todo: extract comments/comment form to components
+
+
+
     render() {
         const {id} = this.props.match.params;
         const {post, comments} = this.props;
@@ -30,20 +42,18 @@ class PostDetail extends Component {
                 <h2>{post.title}</h2>
                 <p>{post.body}</p>
                 <span>{post.author}</span>
+                <button onClick={this.delete}>Delete Post</button>
             </div>
 
 
-
+            <hr/>
             <br/>comments:
             <br/>
-            {comments.map(comment => (
-                <div>
-                    <p>{comment.author}</p>
-                    <span>{comment.body}</span>
-                </div>
-            ))}
 
-            <button onClick={this.delete}>delete</button>
+            <CommentList postId={post.id}/>
+
+
+
         </div>);
     }
 }

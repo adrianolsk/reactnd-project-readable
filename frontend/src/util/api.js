@@ -51,6 +51,40 @@ export const create = (post) => {
     }).then(res => res.json())
 }
 
+
+// COMMENTS
+export const addComment = (comment) => {
+    const newComment = {...comment, id: Date.now().toString(), timestamp: Date.now()};
+
+    return fetch(`${api}/comments`, {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify(newComment)
+    }).then(res => res.json())
+}
+
+//todo: review api
+
+export const deleteComment = (commentId) =>
+    fetch(`${api}/comments/${commentId}`, {
+        method: 'DELETE',
+        headers: headers
+    }).then(res => res.json())
+        .then(data => data)
+
+
+export const voteComment = (commentId, vote) => {
+    debugger;
+    return fetch(`${api}/comments/${commentId}`, {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify({
+            option: vote
+        }),
+    }).then(res => res.json())
+}
+
+
 export const search = (query, maxResults) =>
     fetch(`${api}/search`, {
         method: 'POST',

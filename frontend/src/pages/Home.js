@@ -5,7 +5,8 @@ import CardPost from "../components/CardPost";
 import {getPostsAsync, getPostsFromCategoryAsync} from "../actions/posts";
 import {setCategory} from "../actions/categories";
 
-//todo: remove debuggers;
+// todo: remove debuggers;
+// todo: remove extra comments
 class Home extends Component {
 
 
@@ -13,8 +14,11 @@ class Home extends Component {
         this.loadData();
     }
 
-    componentDidUpdate() {
-        this.loadData();
+    // componentDidUpdate(prevProps, prevState)
+    componentDidUpdate(prevProps) {
+        if (prevProps.match.params !== this.props.match.params) {
+            this.loadData();
+        }
     }
 
     loadData() {

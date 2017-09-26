@@ -6,7 +6,7 @@ import Home from "./pages/Home";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import PostForm from "./pages/PostForm";
-import PostDetail from "./pages/PostDetail";
+import PostDetail from "./pages/post-detail/PostDetail";
 
 class App extends Component {
     render() {
