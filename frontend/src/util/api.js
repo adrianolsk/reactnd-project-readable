@@ -84,6 +84,17 @@ export const voteComment = (commentId, vote) => {
     }).then(res => res.json())
 }
 
+export const votePost = (postId, vote) => {
+    debugger;
+    return fetch(`${api}/posts/${postId}`, {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify({
+            option: vote
+        }),
+    }).then(res => res.json())
+}
+
 
 export const search = (query, maxResults) =>
     fetch(`${api}/search`, {

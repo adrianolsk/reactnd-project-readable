@@ -55,3 +55,14 @@ export function createPostsAsync(post) {
 function createPosts(data) {
     return {type: CREATE_POST, data}
 }
+
+
+export function votePostAsync(post, vote) {
+    return dispatch =>
+        API.votePost(post, vote)
+            .then(data => dispatch(votePost(data)), error => console.error(error))
+}
+
+function votePost(data) {
+    return {type: VOTE_POST, data}
+}

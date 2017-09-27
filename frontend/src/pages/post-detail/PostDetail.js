@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {createPostsAsync, deletePostAsync, getPostAsync} from "../../actions/posts";
+import {createPostsAsync, deletePostAsync, getPostAsync, votePostAsync} from "../../actions/posts";
 import {getCommentsAsync} from "../../actions/comments";
 import CommentForm from "./components/CommentForm";
 import CommentList from "./components/CommentList";
@@ -31,7 +31,9 @@ class PostDetail extends Component {
 
     //todo: extract comments/comment form to components
 
-
+    onVote = (postId, vote) => {
+        this.props.votePost(postId, vote);
+    }
 
     render() {
         const {id} = this.props.match.params;
@@ -42,7 +44,11 @@ class PostDetail extends Component {
                 <h2>{post.title}</h2>
                 <p>{post.body}</p>
                 <span>{post.author}</span>
+                <p>Score: {post.voteScore}</p>
+                <p>Category: {post.category}</p>
                 <button onClick={this.delete}>Delete Post</button>
+                <button onClick={() => this.onVote(post.id, 'upVote')}>Vote Up</button>
+                <button onClick={() => this.onVote(post.id, 'downVote')}>Vote Down</button>
             </div>
 
 
@@ -66,7 +72,8 @@ const mapStateToProps = (state, props) => ({
 const mapDispatchToProps = dispatch => ({
     getPost: (postId) => dispatch(getPostAsync(postId)),
     getComments: (postId) => dispatch(getCommentsAsync(postId)),
-    deletePost: (postId) => dispatch(deletePostAsync(postId))
+    deletePost: (postId) => dispatch(deletePostAsync(postId)),
+    votePost: (postId, vote) => dispatch(votePostAsync(postId, vote))
 });
 
 
