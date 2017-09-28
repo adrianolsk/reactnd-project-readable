@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {createPostsAsync} from "../actions/posts";
+import {createPostsAsync, getPostAsync} from "../actions/posts";
 import {Redirect} from "react-router-dom";
 
 class PostForm extends Component {
@@ -30,16 +30,23 @@ class PostForm extends Component {
 
     }
 
+    componentDidMount(){
+        const {id} = this.props.match.params;
+        this.props.getPost(id)
+    }
+
     render() {
         console.log("State:", this.state);
         const { from } = this.props.location.state || '/'
         const { fireRedirect } = this.state;
 
+        const {post} = this.props;
+
         return (<div>
             <form onSubmit={this.handleSubmit}>
 
                 <label htmlFor="title">Title</label>
-                <input id="title" type="text" onChange={(e) => this.setValue(e)}/>
+                <input id="title" type="text" value={post.title} onChange={(e) => this.setValue(e)}/>
 
                 <label htmlFor="body">Body</label>
                 <textarea id="body" onChange={(e) => this.setValue(e)}/>
@@ -66,11 +73,17 @@ class PostForm extends Component {
 }
 
 const mapStateToProps = (state, props) => ({
-    posts: state.posts
+    post: state.post
 });
 
+
+
+
+
 const mapDispatchToProps = dispatch => ({
+    getPost: (postId) => dispatch(getPostAsync(postId)),
     createPost: (post) => dispatch(createPostsAsync(post))
+
 });
 
 
