@@ -50,7 +50,7 @@ class Home extends Component {
 
 
 const mapStateToProps = (state, props) => ({
-    posts: state.posts
+    posts: state.posts.list
 });
 
 const mapDispatchToProps = dispatch => ({

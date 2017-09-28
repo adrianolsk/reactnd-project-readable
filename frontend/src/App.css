@@ -1,3 +1,5 @@
+/* Todo: extract styles to component level css files*/
+
 .App {
     height: 100%;
     display: grid;
@@ -67,6 +69,14 @@ button {
     width: 100px;
     border-radius: 12px;
     color: white;
+}
+
+button.active {
+    background-color: #006699;
+}
+
+button.active.asc {
+    background-color: #052199;
 }
 
 .content-list {

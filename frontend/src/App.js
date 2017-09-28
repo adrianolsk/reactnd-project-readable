@@ -8,6 +8,12 @@ import Footer from "./components/Footer";
 import PostForm from "./pages/PostForm";
 import PostDetail from "./pages/post-detail/PostDetail";
 
+/*
+* todo: Validate forms
+* todo: Show confirmation on delete post/comments
+* todo: edit a post
+* todo: edit a comment
+*/
 class App extends Component {
     render() {
         return (

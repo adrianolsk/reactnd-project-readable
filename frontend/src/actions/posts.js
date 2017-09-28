@@ -6,6 +6,7 @@ export const CREATE_POST = 'CREATE_POST';
 export const EDIT_POST = 'EDIT_POST';
 export const DELETE_POST = 'DELETE_POST';
 export const VOTE_POST = 'VOTE_POST';
+export const SORT_POSTS = 'SORT_POST';
 
 //todo: remove console error and set the error to a state property
 
@@ -65,4 +66,8 @@ export function votePostAsync(post, vote) {
 
 function votePost(data) {
     return {type: VOTE_POST, data}
+}
+
+export function sortPosts(field) {
+    return {type: SORT_POSTS, field}
 }
