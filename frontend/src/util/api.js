@@ -52,6 +52,17 @@ export const create = (post) => {
 }
 
 
+export const update = (post) => {
+    const newPost = {...post, timestamp: Date.now()};
+
+    return fetch(`${api}/posts/${post.id}`, {
+        method: 'PUT',
+        headers: headers,
+        body: JSON.stringify(newPost)
+    }).then(res => res.json())
+}
+
+
 // COMMENTS
 export const addComment = (comment) => {
     const newComment = {...comment, id: Date.now().toString(), timestamp: Date.now()};
@@ -74,7 +85,7 @@ export const deleteComment = (commentId) =>
 
 
 export const voteComment = (commentId, vote) => {
-    debugger;
+
     return fetch(`${api}/comments/${commentId}`, {
         method: 'POST',
         headers: headers,
@@ -85,7 +96,7 @@ export const voteComment = (commentId, vote) => {
 }
 
 export const votePost = (postId, vote) => {
-    debugger;
+
     return fetch(`${api}/posts/${postId}`, {
         method: 'POST',
         headers: headers,

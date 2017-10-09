@@ -4,6 +4,7 @@ import {createPostsAsync, deletePostAsync, getPostAsync, votePostAsync} from "..
 import {getCommentsAsync} from "../../actions/comments";
 import CommentForm from "./components/CommentForm";
 import CommentList from "./components/CommentList";
+import {Link} from "react-router-dom";
 
 class PostDetail extends Component {
 
@@ -49,6 +50,7 @@ class PostDetail extends Component {
                 <button onClick={this.delete}>Delete Post</button>
                 <button onClick={() => this.onVote(post.id, 'upVote')}>Vote Up</button>
                 <button onClick={() => this.onVote(post.id, 'downVote')}>Vote Down</button>
+                <Link to={`/edit/${id}`}>Edit</Link>
             </div>
 
 

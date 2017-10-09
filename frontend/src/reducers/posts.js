@@ -1,5 +1,5 @@
-import {orderBy} from "lodash";
-import {CREATE_POST, GET_POSTS, SORT_POSTS} from '../actions/posts';
+import {findIndex, orderBy} from "lodash";
+import {CREATE_POST, GET_POSTS, SORT_POSTS, UPDATE_POST} from '../actions/posts';
 
 
 function posts(state = {
@@ -22,6 +22,20 @@ function posts(state = {
             return {
                 ...state,
                 list: [...state.list, action.data]
+            }
+
+        case UPDATE_POST:
+
+            // slice before and after the voted comment to keep the position
+            let index = findIndex(state.list, item => item.id === action.data.id)
+
+            return {
+                ...state,
+                list: [
+                    ...state.list.slice(0, index),
+                    {...action.data},
+                    ...state.list.slice(index + 1)
+                ]
             }
 
         case SORT_POSTS:

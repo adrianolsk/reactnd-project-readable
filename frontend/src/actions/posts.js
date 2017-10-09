@@ -7,6 +7,7 @@ export const EDIT_POST = 'EDIT_POST';
 export const DELETE_POST = 'DELETE_POST';
 export const VOTE_POST = 'VOTE_POST';
 export const SORT_POSTS = 'SORT_POST';
+export const UPDATE_POST = 'UPDATE_POST';
 
 //todo: remove console error and set the error to a state property
 
@@ -46,6 +47,14 @@ function deletePost(data) {
     return {type: DELETE_POST, data}
 }
 
+//todo: tratar erros
+export function savePostsAsync(post) {
+    return dispatch => (!post.id) ?
+        API.create(post)
+            .then(data => dispatch(createPosts(data)), error => console.error(error)) :
+        API.update(post)
+            .then(data => dispatch(updatePosts(data)), error => console.error(error))
+}
 
 export function createPostsAsync(post) {
     return dispatch =>
@@ -55,6 +64,17 @@ export function createPostsAsync(post) {
 
 function createPosts(data) {
     return {type: CREATE_POST, data}
+}
+
+
+export function updatePostsAsync(post) {
+    return dispatch =>
+        API.update(post)
+            .then(data => dispatch(updatePosts(data)), error => console.error(error))
+}
+
+function updatePosts(data) {
+    return {type: UPDATE_POST, data}
 }
 
 

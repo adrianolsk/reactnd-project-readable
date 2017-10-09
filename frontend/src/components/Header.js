@@ -11,7 +11,7 @@ class Header extends Component {
     }
 
     render() {
-        debugger;
+
 
         const {categories,currentCategory} = this.props;
         return (<header>
