@@ -20,12 +20,9 @@ class PostDetail extends Component {
         this.props.getComments(id)
     }
 
-    edit = () => {
 
-    }
     delete = () => {
         const {post} = this.props;
-
         this.props.deletePost(post.id);
     }
 
@@ -67,7 +64,7 @@ class PostDetail extends Component {
 }
 
 const mapStateToProps = (state, props) => ({
-    post: state.post,
+    post: state.posts.post,
     comments: state.comments,
 });
 

@@ -4,6 +4,7 @@ import {CREATE_POST, GET_POSTS, SORT_POSTS, UPDATE_POST} from '../actions/posts'
 
 function posts(state = {
     list: [],
+    post: {},
     sortBy: {
         field: 'timestamp',
         direction: 1
@@ -48,6 +49,35 @@ function posts(state = {
                     direction
                 }
             };
+
+
+        case GET_POST:
+            return {
+                ...state,
+                post: {...action.data}
+            };
+
+        case DELETE_POST:
+            debugger
+            return {
+                ...state,
+                list: [...state.list.filter(x=>x.id !== action.data)]
+            };
+
+        case VOTE_POST:
+
+            let index = findIndex(state.list, item => item.id === action.data.id);
+            return {
+                ...state,
+                list: [
+                    ...state.list.slice(0, index),
+                    {...action.data},
+                    ...state.list.slice(index + 1)
+                ],
+                post: {...action.data}
+            };
+
+
         default:
             return state;
     }

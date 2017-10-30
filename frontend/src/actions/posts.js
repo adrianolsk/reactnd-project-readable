@@ -40,7 +40,7 @@ function getPost(data) {
 export function deletePostAsync(postId) {
     return dispatch =>
         API.deletePost(postId)
-            .then(data => dispatch(deletePost(data)), error => console.error(error))
+            .then(data => dispatch(deletePost(postId)), error => console.error(error))
 }
 
 function deletePost(data) {
