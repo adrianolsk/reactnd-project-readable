@@ -1,5 +1,5 @@
 import {findIndex, orderBy} from "lodash";
-import {CREATE_POST, GET_POSTS, SORT_POSTS, UPDATE_POST} from '../actions/posts';
+import {CREATE_POST, DELETE_POST, GET_POST, GET_POSTS, SORT_POSTS, UPDATE_POST, VOTE_POST} from '../actions/posts';
 
 
 function posts(state = {
@@ -25,8 +25,7 @@ function posts(state = {
                 list: [...state.list, action.data]
             }
 
-        case UPDATE_POST:
-
+        case UPDATE_POST: {
             // slice before and after the voted comment to keep the position
             let index = findIndex(state.list, item => item.id === action.data.id)
 
@@ -38,6 +37,7 @@ function posts(state = {
                     ...state.list.slice(index + 1)
                 ]
             }
+        }
 
         case SORT_POSTS:
             let direction = action.field !== state.sortBy.field ? 1 : state.sortBy.direction * -1;
@@ -61,10 +61,10 @@ function posts(state = {
             debugger
             return {
                 ...state,
-                list: [...state.list.filter(x=>x.id !== action.data)]
+                list: [...state.list.filter(x => x.id !== action.data)]
             };
 
-        case VOTE_POST:
+        case VOTE_POST: {
 
             let index = findIndex(state.list, item => item.id === action.data.id);
             return {
@@ -75,7 +75,8 @@ function posts(state = {
                     ...state.list.slice(index + 1)
                 ],
                 post: {...action.data}
-            };
+            }
+        }
 
 
         default:
