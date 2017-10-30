@@ -1,0 +1,33 @@
+
+.comment-box .header {
+    display: grid;
+    grid-template-columns: 55px 1fr;
+    align-items: center;
+    background-color: white;
+    border: solid 1px #ccc;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    padding: 15px;
+}
+
+.comment-box .author-letter {
+    background-color: #6fb7fd;
+    color: white;
+    border-radius: 50%;
+    height: 45px;
+    width: 45px;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+
+.comment-box .comment-content {
+    background-color: white;
+    border: solid 1px #ccc;
+    border-top: none;
+    padding: 15px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    padding-bottom: 30px;
+    padding-top: 30px;
+}

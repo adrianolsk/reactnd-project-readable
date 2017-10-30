@@ -4,7 +4,7 @@ import {createPostsAsync, deletePostAsync, getPostAsync, votePostAsync} from "..
 import {getCommentsAsync} from "../../actions/comments";
 import CommentForm from "./components/CommentForm";
 import CommentList from "./components/CommentList";
-import {Link} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 
 class PostDetail extends Component {
 
@@ -24,6 +24,7 @@ class PostDetail extends Component {
     delete = () => {
         const {post} = this.props;
         this.props.deletePost(post.id);
+        this.setState({fireRedirect: true})
     }
 
 
@@ -36,7 +37,8 @@ class PostDetail extends Component {
     render() {
         const {id} = this.props.match.params;
         const {post, comments} = this.props;
-
+        const {fireRedirect} = this.state;
+        const {from} = this.props.location.state || '/'
         return (<div>
             <div>
                 <h2>{post.title}</h2>
@@ -59,6 +61,9 @@ class PostDetail extends Component {
 
 
 
+            {fireRedirect && (
+                <Redirect to={from || '/'}/>
+            )}
         </div>);
     }
 }

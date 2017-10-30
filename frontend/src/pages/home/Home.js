@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import ListHeader from "../components/ListHeader";
-import CardPost from "../components/CardPost";
-import {getPostsAsync, getPostsFromCategoryAsync} from "../actions/posts";
-import {setCategory} from "../actions/categories";
+import ListHeader from "./components/ListHeader";
+import CardPost from "./components/CardPost";
+import {getPostsAsync, getPostsFromCategoryAsync} from "../../actions/posts";
+import {setCategory} from "../../actions/categories";
 
 // todo: remove debuggers;
 // todo: remove extra comments

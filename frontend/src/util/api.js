@@ -74,6 +74,18 @@ export const addComment = (comment) => {
     }).then(res => res.json())
 }
 
+export const updateComment = (comment) => {
+    const newPost = {...comment, timestamp: Date.now()};
+
+    return fetch(`${api}/comments/${comment.id}`, {
+        method: 'PUT',
+        headers: headers,
+        body: JSON.stringify(newPost)
+    }).then(res => res.json())
+}
+
+
+
 //todo: review api
 
 export const deleteComment = (commentId) =>
