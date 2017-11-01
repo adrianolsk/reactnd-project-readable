@@ -22,9 +22,9 @@ export function addCommentAsync(comment) {
     debugger;
     return dispatch => (!comment.id) ?
         API.addComment(comment)
-            .then(data => dispatch(addComment(comment)), error => console.error(error)) :
+            .then(data => dispatch(addComment(data)), error => console.error(error)) :
         API.updateComment(comment)
-            .then(data => dispatch(updateComment(comment)), error => console.error(error))
+            .then(data => dispatch(updateComment(data)), error => console.error(error))
 }
 
 function addComment(data) {

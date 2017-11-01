@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import * as API from '../util/api';
-import {Link, NavLink} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import {getCategoriesAsync} from "../actions/categories";
 
@@ -14,6 +13,9 @@ class Header extends Component {
 
 
         const {categories,currentCategory} = this.props;
+
+
+
         return (<header>
             <ul>
                 <li className={!currentCategory? 'active': ''}>
@@ -33,6 +35,7 @@ class Header extends Component {
 
 const mapStateToProps = (state, props) => ({
     categories: state.categories.list,
+    posts: state.posts.list,
     currentCategory: state.categories.current,
 });
 

@@ -6,12 +6,13 @@ import {deleteCommentAsync, voteCommentAsync} from "../../../actions/comments";
 
 class CommentList extends Component {
 
-    constructor(){
+    constructor() {
         super();
         this.state = {
-            comment : null
+            comment: null
         }
     }
+
     onDelete = (commentId) => {
         this.props.deleteComment(commentId);
     }
@@ -29,11 +30,13 @@ class CommentList extends Component {
         let {comments, postId} = this.props;
         return (
             <div>
-                {comments.filter(x=>x.parentId === postId).map(comment => (<Comment key={comment.id}
-                                                   comment={comment}
-                                                   onEdit={this.onEdit}
-                                                   onVote={this.onVote}
-                                                   onDelete={this.onDelete}/>  ))}
+                {comments.filter(x => x.parentId === postId)
+                    .map(comment => (<Comment key={comment.id}
+                                              postId={postId}
+                                              comment={comment}
+                                              onEdit={this.onEdit}
+                                              onVote={this.onVote}
+                                              onDelete={this.onDelete}/>  ))}
                 <CommentForm postId={postId} comment={this.state.comment}/>
             </div>
         );

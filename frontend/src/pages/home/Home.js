@@ -4,6 +4,7 @@ import ListHeader from "./components/ListHeader";
 import CardPost from "./components/CardPost";
 import {getPostsAsync, getPostsFromCategoryAsync} from "../../actions/posts";
 import {setCategory} from "../../actions/categories";
+import AuthorList from "./components/AuthorsList";
 
 // todo: remove debuggers;
 // todo: remove extra comments
@@ -39,7 +40,7 @@ class Home extends Component {
 
         return (
             <div className="content-list">
-
+                <AuthorList/>
                 <ListHeader category={category}/>
                 {posts.map(post => (<CardPost key={post.id} post={post}/>))}
 

@@ -11,8 +11,9 @@ header {
     grid-area: header;
     align-content: center;
     text-align: center;
-    background-color: #2C0635;
+    background-color: #8cc152;
     /* display:none; */
+    /*#a0d468 #8cc152*/
 }
 
 ul {
@@ -28,7 +29,7 @@ ul {
 li {
     color: white;
     padding: 0 5px 0 5px;
-    border-bottom: 4px solid #ff8100;
+    border-bottom: 4px solid #a0d468;
     display: grid;
     text-align: center;
     align-content: center;
@@ -129,14 +130,14 @@ li.active a{
     color:blue;
 }
 
-form {
+.form {
     display: grid;
-    padding: 1em;
-    background: #f9f9f9;
-    border: 1px solid #c1c1c1;
-    margin: 2rem auto 0 auto;
-    max-width: 600px;
-    padding: 1em;
+    /*padding: 1em;*/
+    /*background: #f9f9f9;*/
+    /*border: 1px solid #c1c1c1;*/
+    /*margin: 2rem auto 0 auto;*/
+    /*max-width: 600px;*/
+    /*padding: 1em;*/
 }
 
 form input {

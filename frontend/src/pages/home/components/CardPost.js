@@ -40,7 +40,7 @@ class CardPost extends Component {
                     Total comentários: {comments.length}
                     <div className="card-author"><i>by {author}</i></div>
                     <div className="card-date">{moment(timestamp).format('D MMM YYYY, h:mma')}</div>
-                    <div className="card-category"><i class="fa fa-tag" aria-hidden="true"/>{category}</div>
+                    <div className="card-category"><i className="fa fa-tag" aria-hidden="true"/>{category}</div>
                     <div className="card-category">voteScore: {voteScore}</div>
                     <Link to={`/${category}/${id}`}>Details</Link>
                     <Link to={`/edit/${id}`}>Editar</Link>
