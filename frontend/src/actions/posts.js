@@ -89,5 +89,6 @@ function votePost(data) {
 }
 
 export function sortPosts(field) {
+    debugger;
     return {type: SORT_POSTS, field}
 }

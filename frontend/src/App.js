@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import logo from './logo.svg';
-import './App.css';
+// import './App.css';
 import {Route, Switch, Link} from 'react-router-dom';
 import Home from "./pages/home/Home";
 import Header from "./components/Header";
@@ -16,10 +16,11 @@ import PostDetail from "./pages/post-detail/PostDetail";
 */
 class App extends Component {
     render() {
-        return (
-            <div className="App">
-                <Header/>
-                <div className="content">
+        return ([
+            <Header/>,
+
+
+                <div className="main">
                     <Switch>
                         <Route exact path='/' component={Home}/>
                         <Route exact path='/new' component={PostForm}/>
@@ -27,10 +28,10 @@ class App extends Component {
                         <Route exact path='/:category/:id' component={PostDetail}/>
                         <Route exact path='/:category' component={Home}/>
                     </Switch>
-                </div>
+                </div>,
                 <Footer/>
-            </div>
-        );
+
+        ]);
     }
 }
 

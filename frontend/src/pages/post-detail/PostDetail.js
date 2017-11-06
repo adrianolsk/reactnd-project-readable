@@ -39,32 +39,57 @@ class PostDetail extends Component {
         const {post, comments} = this.props;
         const {fireRedirect} = this.state;
         const {from} = this.props.location.state || '/'
-        return (<div>
-            <div>
-                <h2>{post.title}</h2>
-                <p>{post.body}</p>
-                <span>{post.author}</span>
-                <p>Score: {post.voteScore}</p>
-                <p>Category: {post.category}</p>
-                <button onClick={this.delete}>Delete Post</button>
-                <button onClick={() => this.onVote(post.id, 'upVote')}>Vote Up</button>
-                <button onClick={() => this.onVote(post.id, 'downVote')}>Vote Down</button>
-                <Link to={`/edit/${id}`}>Edit</Link>
-            </div>
+        return ([
+            <div className="main">
+                <div className="title">
+                    {post.title}
+                </div>
+                <div className="toolbar">
+                    Author: {post.author}
+
+                    {/*<div className="tools">*/}
+                    {/*<span>Order By</span>*/}
+                    {/*<select name="" id="">*/}
+                    {/*<option value="">Title</option>*/}
+                    {/*<option value="">Score</option>*/}
+                    {/*<option value="">Date</option>*/}
+                    {/*</select>*/}
+                    {/*<Link to="/new"><button><i className="fa fa-file-o"/></button></Link>*/}
+
+                    {/*</div>*/}
+                </div>
+                <div className="post-container">
+
+                    <div>
+                        <h2>{post.title}</h2>
+                        <p>{post.body}</p>
+                        <span>{post.author}</span>
+                        <p>Score: {post.voteScore}</p>
+                        <p>Category: {post.category}</p>
+                        <button onClick={this.delete}>Delete Post</button>
+                        <button onClick={() => this.onVote(post.id, 'upVote')}>Vote Up</button>
+                        <button onClick={() => this.onVote(post.id, 'downVote')}>Vote Down</button>
+                        <Link to={`/edit/${id}`}>Edit</Link>
+                    </div>
+
+                    <hr/>
+                    <br/>comments:
+                    <br/>
+
+                    <CommentList postId={post.id}/>
+                </div>
 
 
-            <hr/>
-            <br/>comments:
-            <br/>
-
-            <CommentList postId={post.id}/>
 
 
 
-            {fireRedirect && (
-                <Redirect to={from || '/'}/>
-            )}
-        </div>);
+                    {fireRedirect && (
+                        <Redirect to={from || '/'}/>
+                    )}
+
+
+
+            </div>]);
     }
 }
 

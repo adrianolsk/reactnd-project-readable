@@ -4,7 +4,8 @@ import ListHeader from "./components/ListHeader";
 import CardPost from "./components/CardPost";
 import {getPostsAsync, getPostsFromCategoryAsync} from "../../actions/posts";
 import {setCategory} from "../../actions/categories";
-import AuthorList from "./components/AuthorsList";
+import AuthorList from "../../components/AuthorsList";
+import Link from "react-router-dom/es/Link";
 
 // todo: remove debuggers;
 // todo: remove extra comments
@@ -39,12 +40,37 @@ class Home extends Component {
         let {posts} = this.props;
 
         return (
-            <div className="content-list">
-                <AuthorList/>
-                <ListHeader category={category}/>
-                {posts.map(post => (<CardPost key={post.id} post={post}/>))}
+            <div className="main">
+                <div className="title">
+                    {category || "All topics"}
+                </div>
+                <div className="toolbar">
+                    Share a knowlage
+                    <ListHeader category={category}/>
+                    {/*<div className="tools">*/}
+                        {/*<span>Order By</span>*/}
+                        {/*<select name="" id="">*/}
+                            {/*<option value="">Title</option>*/}
+                            {/*<option value="">Score</option>*/}
+                            {/*<option value="">Date</option>*/}
+                        {/*</select>*/}
+                        {/*<Link to="/new"><button><i className="fa fa-file-o"/></button></Link>*/}
+
+                    {/*</div>*/}
+                </div>
+                <div className="container">
+                    {posts.map(post => (<CardPost key={post.id} post={post}/>))}
+
+
+                </div>
 
             </div>
+            // <div className="content-list">
+            //
+            //     <ListHeader category={category}/>
+            //     {posts.map(post => (<CardPost key={post.id} post={post}/>))}
+            //
+            // </div>
         )
     }
 }

@@ -22,19 +22,39 @@ class ListHeader extends Component {
     render() {
         let {category, postsSortedBy} = this.props;
         return (
-            <div className="content-header">
-                <h2>{category || "All"}</h2>
-                <div className="content-actions">
-                    <Link to="/new">new</Link>
-                    {this.state.fields.map(field => (
-                        <SortButton
-                            key={field.value}
-                            field={field}
-                            onSort={this.props.sortPosts}
-                            postsSortedBy={postsSortedBy}/>
-                    ))}
+            <div className="tools">
+                <span>Order By</span>
+                <div>
+                {this.state.fields.map(field => (
+                    <SortButton
+                        key={field.value}
+                        field={field}
+                        onSort={this.props.sortPosts}
+                        postsSortedBy={postsSortedBy}/>
+                ))}
                 </div>
+                {/*<select name="" id="" onChange={ (e) => this.props.sortPosts(e.target.value)} >*/}
+                    {/*{this.state.fields.map(field => (*/}
+                    {/*<option  key={field.value} value={field.value}>{field.label}</option>*/}
+                    {/*))}*/}
+
+                {/*</select>*/}
+                <Link to="/new"><button><i className="fa fa-file-o"/></button></Link>
+
             </div>
+            // <div className="content-header">
+            //     <h2>{category || "All"}</h2>
+            //     <div className="content-actions">
+            //         <Link to="/new">new</Link>
+            //         {this.state.fields.map(field => (
+            //             <SortButton
+            //                 key={field.value}
+            //                 field={field}
+            //                 onSort={this.props.sortPosts}
+            //                 postsSortedBy={postsSortedBy}/>
+            //         ))}
+            //     </div>
+            // </div>
         );
     }
 }

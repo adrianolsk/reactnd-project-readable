@@ -17,13 +17,20 @@ class AuthorList extends Component {
         })), ['total'], ['desc'])
 
         return (
-            <div>
-                <div>
-                    {userList.map(user=> (
-                        <div key={user.author}>{user.author} {user.total}</div>
-                    ))}
+
+                <div class="users">
+                    <ul>
+                        {userList.map(user=> (
+                            <li key={user.author}>
+                                <div class="letter l">{user.author[0]}</div>
+                                <div class="name">{user.author}</div>
+                                <div class="time">{user.total} Posts</div>
+                            </li>
+                        ))}
+                    </ul>
                 </div>
-            </div>
+
+
         );
     }
 }
