@@ -12,12 +12,14 @@ class Header extends Component {
     render() {
 
 
-        const {categories,currentCategory} = this.props;
+        const {categories, currentCategory} = this.props;
 
 
-        return(
+        return (
             <div className="sidebar-left">
-                <div className="logo">Readable</div>
+                <Link className="logo" to={`/`}>
+                    Readable
+                </Link>
                 <div className="search">
                     TOPICS
                 </div>
@@ -25,13 +27,13 @@ class Header extends Component {
                     <ul>
                         <li>
                             <i className="fa fa-circle-o-notch"/>
-                            <Link  to='/' >All</Link>
+                            <Link to='/'>All</Link>
                         </li>
                         {categories.map(item => (
-                                        <li key={item.path} className={currentCategory === item.path ? 'active': ''}>
-                                            <i className="fa fa-circle-o-notch"/> <Link  to={`/${item.path}`}>{item.name}</Link>
-                                        </li>
-                                    ))}
+                            <li key={item.path} className={currentCategory === item.path ? 'active' : ''}>
+                                <i className="fa fa-circle-o-notch"/> <Link to={`/${item.path}`}>{item.name}</Link>
+                            </li>
+                        ))}
 
                     </ul>
                 </div>
