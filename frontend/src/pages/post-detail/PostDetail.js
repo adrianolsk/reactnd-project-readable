@@ -22,9 +22,11 @@ class PostDetail extends Component {
 
 
     onDelete = () => {
-        const {post} = this.props;
-        this.props.deletePost(post.id);
-        this.setState({fireRedirect: true})
+        if (window.confirm("Are you sure?")) {
+            const {post} = this.props;
+            this.props.deletePost(post.id);
+            this.setState({fireRedirect: true})
+        }
     }
 
 

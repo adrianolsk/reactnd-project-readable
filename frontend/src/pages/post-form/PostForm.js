@@ -114,13 +114,13 @@ class PostForm extends Component {
 
 
                         <label htmlFor="title">Title</label>
-                        <input id="title" type="text" value={title} onChange={this.setValue}/>
+                        <input autoComplete="off" id="title" type="text" value={title} onChange={this.setValue}/>
 
                         <label htmlFor="body">Body</label>
                         <textarea id="body" value={body} onChange={this.setValue}/>
 
                         <label htmlFor="author">Author</label>
-                        <input id="author" value={author} type="text" onChange={this.setValue}/>
+                        <input autoComplete="off" id="author" value={author} type="text" onChange={this.setValue}/>
 
                         <label htmlFor="category">Category</label>
 

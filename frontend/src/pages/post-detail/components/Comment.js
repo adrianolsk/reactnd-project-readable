@@ -20,6 +20,11 @@ class Comment extends Component {
         this.setState({editing: false})
     }
 
+    onDelete = (id) => {
+        if (window.confirm("Are you sure?")) {
+            this.props.onDelete(id);
+        }
+    }
 
     render() {
         let {comment, postId} = this.props;
@@ -42,7 +47,7 @@ class Comment extends Component {
                                     <button onClick={this.onEdit}>
                                         <i className="fa fa-pencil-square-o" aria-hidden="true"/>
                                     </button>
-                                    <button className='remove' onClick={() => this.props.onDelete(comment.id)}>
+                                    <button className='remove' onClick={() => this.onDelete(comment.id)}>
                                         <i className="fa fa-trash-o" aria-hidden="true"/>
                                     </button>
 

@@ -4,6 +4,7 @@ import ListHeader from "./components/ListHeader";
 import CardPost from "./components/CardPost";
 import {getPostsAsync, getPostsFromCategoryAsync} from "../../actions/posts";
 import {setCategory} from "../../actions/categories";
+import Link from "react-router-dom/es/Link";
 
 
 class Home extends Component {
@@ -45,6 +46,13 @@ class Home extends Component {
                 </div>
                 <div className="container">
                     {posts.map(post => (<CardPost key={post.id} post={post}/>))}
+                    {posts.length === 0 ? (
+                        <div>
+                            <h3>No posts in the topic yet... <Link to="/new">Add a new one</Link></h3>
+
+                        </div>
+
+                    ) : ""}
                 </div>
             </div>
         )

@@ -14,7 +14,9 @@ class CardPost extends Component {
     }
 
     onDelete = (id) => {
-        this.props.deletePost(id);
+        if (window.confirm("Are you sure?")) {
+            this.props.deletePost(id);
+        }
     }
 
     onVote = (postId, vote) => {
@@ -48,16 +50,20 @@ class CardPost extends Component {
                     <div className="author">
                         <div className={"letter " + author[0].toLowerCase()}>{author[0]}</div>
                         <div className="name">{author}</div>
-                        <div className="time">{moment(timestamp).format('D MMM YYYY, h:mma')}</div>
+                        <div className="time">{moment(timestamp).fromNow()}</div>
                     </div>
                 </Link>
                 <div className="footer">
-                    <Link to={`/${category}/${id}`}>
-                        <div>
+
+                    <div>
+                        <Link to={`/${category}`}>
                             <span className="meta"><i className="fa fa-tag"/> {category}</span>
+                        </Link>
+                        <Link to={`/${category}/${id}`}>
                             <span className="meta"><i className="fa fa-comments"/> {comments.length} Comments</span>
-                        </div>
-                    </Link>
+                        </Link>
+                    </div>
+
                     <div className="buttons">
                         <button onClick={() => this.onVote(id, 'upVote')}><i className='fa fa-thumbs-up'/></button>
                         <span>{voteScore}</span>
