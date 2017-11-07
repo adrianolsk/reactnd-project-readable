@@ -11,6 +11,59 @@ html,body{
 }
 .page{
 
+  form {
+    display: grid;
+    grid-gap: 10px;
+    padding: 20px;
+  }
+
+  form input {
+    height: 50px;
+    border: solid 1px #ccc;
+    color: #505050;
+    font-size: 15px;
+    text-indent: 10px
+  }
+  form textarea {
+    min-height: 100px;
+    border: solid 1px #ccc;
+    color: #505050;
+    font-size: 15px;
+    text-indent: 10px
+  }
+  form select {
+    height: 50px;
+    border: solid 1px #ccc;
+    background-color: #fff;
+    color: #505050;
+    font-size: 15px;
+    text-indent: 10px
+  }
+
+  form button {
+    margin-top: 40px;
+    height: 50px;
+    border: none;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 15px;
+    background-color: #0cb548 !important;
+    text-transform: uppercase;
+  }
+
+  .form-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    .cancel {
+      background-color: #ccc !important;
+    }
+  }
+
+  fieldset {
+    border: solid 1px #ccc;
+    margin-top: 40px;
+  }
   .letter{
     &.a{
       background-color:#5EB1BF ;
@@ -219,6 +272,30 @@ html,body{
       font-size:20px;
       font-weight:300;
       color:#a4aeb7;
+      button, .button {
+        height: 40px;
+        border: none;
+        border-radius: 8px;
+        background-color: transparent;
+        font-size: 25px;
+        color: #878787;
+        &:hover {
+          cursor: pointer;
+          background-color: #0fafff;
+          color: white;
+        }
+        &:hover, &:focus {
+          outline: 0;
+        }
+      }
+
+      .toolbar-actions {
+        display: grid;
+        grid-template-columns: 1fr 120px;
+        align-content: center;
+        text-align: right;
+        margin-right: 10px;
+      }
       .tools{
         align-items:center;
         padding:10px;
@@ -233,26 +310,37 @@ html,body{
           text-indent:10px;
           color:#999999;
         }
-        button, .button{
-          height:40px;
-          border:none;
-          border-radius:8px;
-          background-color:transparent;
-          font-size:25px;
-          color:#878787;
-          &:hover{
-            cursor:pointer;
-            background-color:#0fafff;
-            color:white;
+
+        .sorting {
+          display: grid;
+          grid-auto-flow: column;
+          align-items: center;
+          i {
+            margin-left: 5px;
           }
         }
-
         .sort{
-          color: #989696;
-          font-size: 16px;
+          font-size: 20px;
+          font-weight: 300;
+          color: #a4aeb7;
+          font-family: 'Raleway', sans-serif;
+          &:hover {
+            background-color: transparent;
+            color: #0fafff;
+          }
         }
       }
 
+    }
+
+    .post-container {
+      padding: 50px;
+    }
+    .container-form {
+      padding: 20px;
+      display: grid;
+      grid-gap: 20px;
+      background-color: #f3f2f7;
     }
     .container{
       padding: 20px;

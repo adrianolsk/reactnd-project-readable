@@ -16,16 +16,17 @@ class Comment extends Component {
         this.setState({editing: true})
     }
 
-    onSave = () => {
+    onDone = () => {
         this.setState({editing: false})
     }
+
 
     render() {
         let {comment, postId} = this.props;
         return (
             <div>
                 {this.state.editing ? (
-                    <CommentForm postId={postId} comment={comment} onSave={this.onSave}/>
+                    <CommentForm postId={postId} comment={comment} onDone={this.onDone}/>
                 ) : (
                     <div className='comment-box'>
                         <div className='header'>

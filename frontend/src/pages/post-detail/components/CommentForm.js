@@ -44,7 +44,27 @@ class CommentForm extends Component {
         });
     }
 
-    addComment = (e) => {
+
+    // componentWillReceiveProps(nextProps) {
+    //     debugger;
+    //     this.setState({...this.state, ...nextProps.comment});
+    // }
+
+    componentDidMount() {
+        this.setState({...this.state, ...this.props.comment});
+    }
+
+    clearForm = () => {
+        this.setState(initialState);
+    }
+
+    onCancel = () => {
+        if (this.props.onDone) {
+            this.props.onDone();
+        }
+    }
+
+    handleSubmit = (e) => {
         e.preventDefault();
         this.setState({formSubmitted: true});
         const validator = validate(this.state);
@@ -62,59 +82,45 @@ class CommentForm extends Component {
                 this.props.onSave();
             }
         }
-
     }
-
-    // componentWillReceiveProps(nextProps) {
-    //     debugger;
-    //     this.setState({...this.state, ...nextProps.comment});
-    // }
-
-    componentDidMount() {
-        this.setState({...this.state, ...this.props.comment});
-    }
-
-    clearForm = () => {
-        this.setState(initialState);
-    }
-
-    onCancel = () => {
-        if (this.props.onCancel) {
-            this.props.onCancel();
-        }
-    }
-
     render() {
         let {author, body, id} = this.state;
         const validator = validate(this.state);
         return (
             <div className='comment-box'>
+
                 <div className='header'>
                     <span></span>
                     {id ? "Editing comment" : "Add a comment"}
                 </div>
                 <div className='comment-content form'>
+                    <fieldset>
+                        <form onSubmit={this.handleSubmit}>
 
+                            <ErrorMessages show={this.state.formSubmitted} errors={validator.errors}/>
 
-                    <ErrorMessages show={this.state.formSubmitted} errors={validator.errors}/>
+                            <label htmlFor="">Name</label>
+                            <input type="text" id='author' value={author} onChange={this.setValue}/>
 
-                    <label htmlFor="">Name</label>
-                    <input type="text" id='author' value={author} onChange={this.setValue}/>
+                            <label htmlFor="">Message</label>
+                            <input type="text" id='body' value={body} onChange={this.setValue}/>
 
-                    <label htmlFor="">Message</label>
-                    <input type="text" id='body' value={body} onChange={this.setValue}/>
+                            <div className="form-buttons">
+                                {id ? ( <button type='button' className="cancel" onClick={this.onCancel}>
+                                    <i className="fa fa-undo" aria-hidden="true"/> Cancelar
+                                </button>) : ""}
 
-
+                                <button type='submit'>
+                                    <i className="fa fa-save" aria-hidden="true"/> Salvar
+                                </button>
+                            </div>
+                        </form>
+                    </fieldset>
                 </div>
                 <div className="footer-edit">
-                    {id ? ( <button type='submit'>
-                        <i className="fa fa-undo" aria-hidden="true" onClick={this.onCancel}/>
-                    </button>) : ""}
 
-                    <button type='button' onClick={this.addComment}>
-                        <i className="fa fa-save" aria-hidden="true"/>
-                    </button>
                 </div>
+
             </div>
         );
     }

@@ -47,30 +47,11 @@ class Home extends Component {
                 <div className="toolbar">
                     Share a knowlage
                     <ListHeader category={category}/>
-                    {/*<div className="tools">*/}
-                        {/*<span>Order By</span>*/}
-                        {/*<select name="" id="">*/}
-                            {/*<option value="">Title</option>*/}
-                            {/*<option value="">Score</option>*/}
-                            {/*<option value="">Date</option>*/}
-                        {/*</select>*/}
-                        {/*<Link to="/new"><button><i className="fa fa-file-o"/></button></Link>*/}
-
-                    {/*</div>*/}
                 </div>
                 <div className="container">
                     {posts.map(post => (<CardPost key={post.id} post={post}/>))}
-
-
                 </div>
-
             </div>
-            // <div className="content-list">
-            //
-            //     <ListHeader category={category}/>
-            //     {posts.map(post => (<CardPost key={post.id} post={post}/>))}
-            //
-            // </div>
         )
     }
 }

@@ -23,8 +23,8 @@ class ListHeader extends Component {
         let {category, postsSortedBy} = this.props;
         return (
             <div className="tools">
-                <span>Order By</span>
-                <div>
+                <span>Order By:</span>
+                <div className="sorting">
                 {this.state.fields.map(field => (
                     <SortButton
                         key={field.value}

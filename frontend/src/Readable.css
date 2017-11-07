@@ -12,6 +12,63 @@ html, body {
   grid-template-rows: 1fr;
   height: 100%;
   background-color: #ccc; }
+
+.page form {
+    display: grid;
+    grid-gap: 10px;
+    padding: 20px;
+}
+
+.page form input {
+    height: 50px;
+    border: solid 1px #ccc;
+    color: #505050;
+    font-size: 15px;
+    text-indent: 10px;
+}
+
+.page form textarea {
+    min-height: 100px;
+    border: solid 1px #ccc;
+    color: #505050;
+    font-size: 15px;
+    text-indent: 10px;
+}
+
+.page form select {
+    height: 50px;
+    border: solid 1px #ccc;
+    background-color: #fff;
+    color: #505050;
+    font-size: 15px;
+    text-indent: 10px;
+}
+
+.page form button {
+    margin-top: 40px;
+    height: 50px;
+    border: none;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 15px;
+    background-color: #0cb548 !important;
+    text-transform: uppercase;
+}
+
+.page .form-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+}
+
+.page .form-buttons .cancel {
+    background-color: #ccc !important;
+}
+
+.page fieldset {
+    border: solid 1px #ccc;
+    margin-top: 40px;
+}
   .page .letter.a {
     background-color: #5EB1BF; }
   .page .letter.b {
@@ -164,6 +221,33 @@ html, body {
       font-size: 20px;
       font-weight: 300;
       color: #a4aeb7; }
+
+.page .main .toolbar button, .page .main .toolbar .button {
+    height: 40px;
+    border: none;
+    border-radius: 8px;
+    background-color: transparent;
+    font-size: 25px;
+    color: #878787;
+}
+
+.page .main .toolbar button:hover, .page .main .toolbar .button:hover {
+    cursor: pointer;
+    background-color: #0fafff;
+    color: white;
+}
+
+.page .main .toolbar button:hover, .page .main .toolbar button:focus, .page .main .toolbar .button:hover, .page .main .toolbar .button:focus {
+    outline: 0;
+}
+
+.page .main .toolbar .toolbar-actions {
+    display: grid;
+    grid-template-columns: 1fr 120px;
+    align-content: center;
+    text-align: right;
+    margin-right: 10px;
+}
       .page .main .toolbar .tools {
         align-items: center;
         padding: 10px;
@@ -177,20 +261,38 @@ html, body {
           font-size: 15px;
           text-indent: 10px;
           color: #999999; }
-        .page .main .toolbar .tools button, .page .main .toolbar .tools .button {
-          height: 40px;
-          border: none;
-          border-radius: 8px;
-          background-color: transparent;
-          font-size: 25px;
-          color: #878787; }
-          .page .main .toolbar .tools button:hover, .page .main .toolbar .tools .button:hover {
-            cursor: pointer;
-            background-color: #0fafff;
-            color: white; }
+
+.page .main .toolbar .tools .sorting {
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+}
+
+.page .main .toolbar .tools .sorting i {
+    margin-left: 5px;
+}
         .page .main .toolbar .tools .sort {
-          color: #989696;
-          font-size: 16px; }
+            font-size: 20px;
+            font-weight: 300;
+            color: #a4aeb7;
+            font-family: 'Raleway', sans-serif;
+        }
+
+.page .main .toolbar .tools .sort:hover {
+    background-color: transparent;
+    color: #0fafff;
+}
+
+.page .main .post-container {
+    padding: 50px;
+}
+
+.page .main .container-form {
+    padding: 20px;
+    display: grid;
+    grid-gap: 20px;
+    background-color: #f3f2f7;
+}
     .page .main .container {
       padding: 20px;
       display: grid;

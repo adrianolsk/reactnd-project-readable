@@ -17,10 +17,10 @@ import PostDetail from "./pages/post-detail/PostDetail";
 class App extends Component {
     render() {
         return ([
-            <Header/>,
+            <Header key="header"/>,
 
 
-                <div className="main">
+            <div className="main" key="main">
                     <Switch>
                         <Route exact path='/' component={Home}/>
                         <Route exact path='/new' component={PostForm}/>
@@ -29,7 +29,7 @@ class App extends Component {
                         <Route exact path='/:category' component={Home}/>
                     </Switch>
                 </div>,
-                <Footer/>
+            <Footer key="footer"/>
 
         ]);
     }

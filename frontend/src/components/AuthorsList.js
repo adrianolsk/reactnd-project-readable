@@ -18,13 +18,13 @@ class AuthorList extends Component {
 
         return (
 
-                <div class="users">
+            <div className="users">
                     <ul>
                         {userList.map(user=> (
                             <li key={user.author}>
-                                <div class="letter l">{user.author[0]}</div>
-                                <div class="name">{user.author}</div>
-                                <div class="time">{user.total} Posts</div>
+                                <div className="letter l">{user.author[0]}</div>
+                                <div className="name">{user.author}</div>
+                                <div className="time">{user.total} Posts</div>
                             </li>
                         ))}
                     </ul>

@@ -36,18 +36,28 @@ class PostDetail extends Component {
 
     render() {
         const {id} = this.props.match.params;
-        const {post, comments} = this.props;
+        const {comments} = this.props;
+        const {author, title, body, voteScore, category} = this.props.post || {};
         const {fireRedirect} = this.state;
         const {from} = this.props.location.state || '/'
-        return ([
+        return (
             <div className="main">
                 <div className="title">
-                    {post.title}
+                    {title}
+
                 </div>
                 <div className="toolbar">
-                    Author: {post.author}
+                    Author: {author}
 
-                    {/*<div className="tools">*/}
+                    <div className="toolbar-actions">
+                        <span><i className="fa fa-tag"></i>{category}</span>
+                        <div className="buttons">
+                            <button onClick={() => this.onVote(id, 'upVote')}><i className='fa fa-thumbs-up'/></button>
+                            <span>{voteScore}</span>
+                            <button onClick={() => this.onVote(id, 'downVote')}><i className='fa fa-thumbs-down'/>
+                            </button>
+                        </div>
+                    </div>
                     {/*<span>Order By</span>*/}
                     {/*<select name="" id="">*/}
                     {/*<option value="">Title</option>*/}
@@ -61,14 +71,14 @@ class PostDetail extends Component {
                 <div className="post-container">
 
                     <div>
-                        <h2>{post.title}</h2>
-                        <p>{post.body}</p>
-                        <span>{post.author}</span>
-                        <p>Score: {post.voteScore}</p>
-                        <p>Category: {post.category}</p>
+                        {/*<h2>{title}</h2>*/}
+                        <p>{body}</p>
+                        {/*<span>{author}</span>*/}
+                        <p>Score: {voteScore}</p>
+                        <p>Category: {category}</p>
                         <button onClick={this.delete}>Delete Post</button>
-                        <button onClick={() => this.onVote(post.id, 'upVote')}>Vote Up</button>
-                        <button onClick={() => this.onVote(post.id, 'downVote')}>Vote Down</button>
+                        <button onClick={() => this.onVote(id, 'upVote')}>Vote Up</button>
+                        <button onClick={() => this.onVote(id, 'downVote')}>Vote Down</button>
                         <Link to={`/edit/${id}`}>Edit</Link>
                     </div>
 
@@ -76,7 +86,7 @@ class PostDetail extends Component {
                     <br/>comments:
                     <br/>
 
-                    <CommentList postId={post.id}/>
+                    <CommentList postId={id}/>
                 </div>
 
 
@@ -88,8 +98,7 @@ class PostDetail extends Component {
                     )}
 
 
-
-            </div>]);
+            </div>);
     }
 }
 

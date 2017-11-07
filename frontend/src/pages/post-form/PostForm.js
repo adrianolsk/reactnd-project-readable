@@ -97,34 +97,46 @@ class PostForm extends Component {
         const {title, body, author, category} = this.state.form;
 
 
-        return (<div>
-            <form onSubmit={this.handleSubmit}>
-                <ErrorMessages show={this.state.formSubmitted} errors={validator.errors}/>
+        return (
+            <div className="main">
+                <div className="title">
+                    {title || "Add a new post"}
+                </div>
+                <div className="toolbar">
+                    Share a knowlage
+
+                </div>
+                <div className="container-form">
+                    <form onSubmit={this.handleSubmit}>
+                        <ErrorMessages show={this.state.formSubmitted} errors={validator.errors}/>
 
 
-                <label htmlFor="title">Title</label>
-                <input id="title" type="text" value={title} onChange={this.setValue}/>
+                        <label htmlFor="title">Title</label>
+                        <input id="title" type="text" value={title} onChange={this.setValue}/>
 
-                <label htmlFor="body">Body</label>
-                <textarea id="body" value={body} onChange={this.setValue}/>
+                        <label htmlFor="body">Body</label>
+                        <textarea id="body" value={body} onChange={this.setValue}/>
 
-                <label htmlFor="author">Author</label>
-                <input id="author" value={author} type="text" onChange={this.setValue}/>
+                        <label htmlFor="author">Author</label>
+                        <input id="author" value={author} type="text" onChange={this.setValue}/>
 
-                <label htmlFor="category">Category</label>
+                        <label htmlFor="category">Category</label>
 
-                <select name="category" id="category" value={category || categories.current || ''}
-                        onChange={this.setValue}>
-                    <option value="" disabled>Select a category</option>
-                    {categories.list.map(item => (
-                        <option key={item.path} value={item.path}>{item.name}</option>
-                    ))}
+                        <select name="category" id="category" value={category || categories.current || ''}
+                                onChange={this.setValue}>
+                            <option value="" disabled>Select a category</option>
+                            {categories.list.map(item => (
+                                <option key={item.path} value={item.path}>{item.name}</option>
+                            ))}
 
 
-                </select>
+                        </select>
 
-                <button type="submit">salvar</button>
-            </form>
+                        <button type="submit">salvar</button>
+                    </form>
+                </div>
+
+
             {fireRedirect && (
                 <Redirect to={from || '/'}/>
             )}
