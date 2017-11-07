@@ -47,7 +47,7 @@ function deletePost(data) {
     return {type: DELETE_POST, data}
 }
 
-//todo: tratar erros
+
 export function savePostsAsync(post) {
     return dispatch => (!post.id) ?
         API.create(post)
@@ -89,6 +89,6 @@ function votePost(data) {
 }
 
 export function sortPosts(field) {
-    debugger;
+
     return {type: SORT_POSTS, field}
 }

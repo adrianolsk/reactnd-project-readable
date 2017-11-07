@@ -19,7 +19,7 @@ function getComments(data) {
 
 
 export function addCommentAsync(comment) {
-    debugger;
+
     return dispatch => (!comment.id) ?
         API.addComment(comment)
             .then(data => dispatch(addComment(data)), error => console.error(error)) :

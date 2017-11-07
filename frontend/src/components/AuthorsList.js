@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {orderBy} from 'lodash';
+
 class AuthorList extends Component {
 
     render() {
@@ -22,7 +23,8 @@ class AuthorList extends Component {
                     <ul>
                         {userList.map(user=> (
                             <li key={user.author}>
-                                <div className="letter l">{user.author[0]}</div>
+                                <div
+                                    className={"letter " + user.author[0].toLowerCase()}>{user.author[0].toUpperCase()}</div>
                                 <div className="name">{user.author}</div>
                                 <div className="time">{user.total} Posts</div>
                             </li>

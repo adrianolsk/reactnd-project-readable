@@ -4,19 +4,14 @@ import ListHeader from "./components/ListHeader";
 import CardPost from "./components/CardPost";
 import {getPostsAsync, getPostsFromCategoryAsync} from "../../actions/posts";
 import {setCategory} from "../../actions/categories";
-import AuthorList from "../../components/AuthorsList";
-import Link from "react-router-dom/es/Link";
 
-// todo: remove debuggers;
-// todo: remove extra comments
+
 class Home extends Component {
-
 
     componentDidMount() {
         this.loadData();
     }
 
-    // componentDidUpdate(prevProps, prevState)
     componentDidUpdate(prevProps) {
         if (prevProps.match.params !== this.props.match.params) {
             this.loadData();

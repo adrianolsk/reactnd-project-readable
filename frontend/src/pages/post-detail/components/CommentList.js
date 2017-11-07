@@ -29,7 +29,8 @@ class CommentList extends Component {
     render() {
         let {comments, postId} = this.props;
         return (
-            <div>
+            <div className="comments">
+                <h3>Comments:</h3>
                 {comments.filter(x => x.parentId === postId)
                     .map(comment => (<Comment key={comment.id}
                                               postId={postId}

@@ -1,5 +1,5 @@
 import {findIndex} from 'lodash'
-import {GET_COMMENTS, ADD_COMMENT, DELETE_COMMENT, VOTE_COMMENT, UPDATE_COMMENT} from "../actions/comments";
+import {ADD_COMMENT, DELETE_COMMENT, GET_COMMENTS, UPDATE_COMMENT, VOTE_COMMENT} from "../actions/comments";
 
 function comments(state = [], action) {
 
@@ -17,7 +17,7 @@ function comments(state = [], action) {
 
         case UPDATE_COMMENT: {
             // slice before and after the voted comment to keep the position
-            debugger;
+
             let index = findIndex(state, item => item.id === action.data.id)
 
             return [

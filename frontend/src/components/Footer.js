@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import AuthorList from "../components/AuthorsList";
+import Link from "react-router-dom/es/Link";
+
 class Footer extends Component {
     render() {
         return (
@@ -8,8 +10,7 @@ class Footer extends Component {
                     Top users
                 </div>
                 <div className="search">
-                    <i className="fa fa-search"></i>
-                    <input placeholder="Search a user"/>
+                    <Link to="/new"><i className="fa fa-file-o"/>Add a new post</Link>
                 </div>
                 <AuthorList/>
 

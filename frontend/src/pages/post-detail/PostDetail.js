@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {createPostsAsync, deletePostAsync, getPostAsync, votePostAsync} from "../../actions/posts";
+import {deletePostAsync, getPostAsync, votePostAsync} from "../../actions/posts";
 import {getCommentsAsync} from "../../actions/comments";
-import CommentForm from "./components/CommentForm";
 import CommentList from "./components/CommentList";
 import {Link, Redirect} from "react-router-dom";
+import moment from "moment";
 
 class PostDetail extends Component {
 
@@ -21,14 +21,12 @@ class PostDetail extends Component {
     }
 
 
-    delete = () => {
+    onDelete = () => {
         const {post} = this.props;
         this.props.deletePost(post.id);
         this.setState({fireRedirect: true})
     }
 
-
-    //todo: extract comments/comment form to components
 
     onVote = (postId, vote) => {
         this.props.votePost(postId, vote);
@@ -36,8 +34,7 @@ class PostDetail extends Component {
 
     render() {
         const {id} = this.props.match.params;
-        const {comments} = this.props;
-        const {author, title, body, voteScore, category} = this.props.post || {};
+        const {author, title, body, voteScore, category, timestamp} = this.props.post || {};
         const {fireRedirect} = this.state;
         const {from} = this.props.location.state || '/'
         return (
@@ -50,7 +47,7 @@ class PostDetail extends Component {
                     Author: {author}
 
                     <div className="toolbar-actions">
-                        <span><i className="fa fa-tag"></i>{category}</span>
+                        <div className="tag"><i className="fa fa-tag"/>{category}</div>
                         <div className="buttons">
                             <button onClick={() => this.onVote(id, 'upVote')}><i className='fa fa-thumbs-up'/></button>
                             <span>{voteScore}</span>
@@ -58,47 +55,25 @@ class PostDetail extends Component {
                             </button>
                         </div>
                     </div>
-                    {/*<span>Order By</span>*/}
-                    {/*<select name="" id="">*/}
-                    {/*<option value="">Title</option>*/}
-                    {/*<option value="">Score</option>*/}
-                    {/*<option value="">Date</option>*/}
-                    {/*</select>*/}
-                    {/*<Link to="/new"><button><i className="fa fa-file-o"/></button></Link>*/}
-
-                    {/*</div>*/}
                 </div>
                 <div className="post-container">
 
                     <div>
-                        {/*<h2>{title}</h2>*/}
                         <p>{body}</p>
-                        {/*<span>{author}</span>*/}
-                        <p>Score: {voteScore}</p>
-                        <p>Category: {category}</p>
-                        <button onClick={this.delete}>Delete Post</button>
-                        <button onClick={() => this.onVote(id, 'upVote')}>Vote Up</button>
-                        <button onClick={() => this.onVote(id, 'downVote')}>Vote Down</button>
-                        <Link to={`/edit/${id}`}>Edit</Link>
+                        <span>{moment(timestamp).format('D MMM YYYY, h:mma')}</span>
                     </div>
-
-                    <hr/>
-                    <br/>comments:
-                    <br/>
+                    <div className="post-actions">
+                        <button onClick={this.onDelete}><i className="fa fa-trash-o" aria-hidden="true"/>Delete</button>
+                        <Link to={`/edit/${id}`}> <i className="fa fa-pencil" aria-hidden="true"/>Edit</Link>
+                    </div>
 
                     <CommentList postId={id}/>
                 </div>
-
-
-
-
-
-                    {fireRedirect && (
-                        <Redirect to={from || '/'}/>
-                    )}
-
-
-            </div>);
+                {fireRedirect && (
+                    <Redirect to={from || '/'}/>
+                )}
+            </div>
+        );
     }
 }
 

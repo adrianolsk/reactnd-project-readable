@@ -15,27 +15,11 @@ class Header extends Component {
         const {categories,currentCategory} = this.props;
 
 
-
-        // return (<header>
-        //     <ul>
-        //         <li className={!currentCategory? 'active': ''}>
-        //             <Link  to='/' >All</Link>
-        //
-        //         </li>
-        //         {categories.map(item => (
-        //             <li key={item.path} className={currentCategory === item.path ? 'active': ''}>
-        //                 <Link  to={`/${item.path}`}>{item.name}</Link>
-        //             </li>
-        //         ))}
-        //     </ul>
-        // </header>);
-
         return(
             <div className="sidebar-left">
                 <div className="logo">Readable</div>
                 <div className="search">
-                    <i className="fa fa-search"/>
-                    <input placeholder="Search topic"/>
+                    TOPICS
                 </div>
                 <div className="categories">
                     <ul>

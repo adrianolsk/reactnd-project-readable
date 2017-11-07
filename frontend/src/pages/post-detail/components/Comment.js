@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import moment from "moment";
-import './Comment.css'
+
 import CommentForm from "./CommentForm";
 
 class Comment extends Component {
@@ -28,38 +28,46 @@ class Comment extends Component {
                 {this.state.editing ? (
                     <CommentForm postId={postId} comment={comment} onDone={this.onDone}/>
                 ) : (
-                    <div className='comment-box'>
-                        <div className='header'>
-                            <div className='author-letter'>{comment.author[0].toUpperCase()}</div>
-                            <div className='author'>{comment.author}</div>
-                            <div className='date'>{moment(comment.timestamp).fromNow()}</div>
+                    <fieldset>
+                        <div className='comment-box'>
+                            <div className="comment-header">
+                                <div className="author">
+                                    <div
+                                        className={"letter " + comment.author[0].toLowerCase()}>{comment.author[0].toUpperCase()}</div>
+                                    <div className="name">{comment.author}</div>
+                                    <div className="time">{moment(comment.timestamp).fromNow()}</div>
+                                </div>
+                                <div className='buttons'>
 
-                                <button onClick={this.onEdit}>
-                                    <i className="fa fa-pencil-square-o" aria-hidden="true"/>
-                                </button>
-                                <button className='comment-delete' onClick={() => this.props.onDelete(comment.id)}>
-                                    <i className="fa fa-trash-o" aria-hidden="true"/>
-                                </button>
+                                    <button onClick={this.onEdit}>
+                                        <i className="fa fa-pencil-square-o" aria-hidden="true"/>
+                                    </button>
+                                    <button className='remove' onClick={() => this.props.onDelete(comment.id)}>
+                                        <i className="fa fa-trash-o" aria-hidden="true"/>
+                                    </button>
 
+                                </div>
+                            </div>
+
+                            <div className='comment-content'>
+                                <span>{comment.body}</span>
+                            </div>
+
+                            <div className="footer">
+                                <div>
+
+
+                                </div>
+                                <div className="buttons">
+                                    <button onClick={() => this.props.onVote(comment.id, 'upVote')}><i
+                                        className='fa fa-thumbs-up'/></button>
+                                    <span>{comment.voteScore}</span>
+                                    <button onClick={() => this.props.onVote(comment.id, 'downVote')}><i
+                                        className='fa fa-thumbs-down'/></button>
+                                </div>
+                            </div>
                         </div>
-                        <div className='comment-content'>
-                            <span>{comment.body}</span>
-                        </div>
-
-                        <div className="footer">
-                            <p>Votes: {comment.voteScore}</p>
-
-                            <button onClick={() => this.props.onVote(comment.id, 'upVote')}>
-                                <i className="fa fa-thumbs-o-up" aria-hidden="true"/>
-                            </button>
-                            <button onClick={() => this.props.onVote(comment.id, 'downVote')}>
-                                <i className="fa fa-thumbs-o-down" aria-hidden="true"/>
-                            </button>
-                        </div>
-
-
-
-                    </div>
+                    </fieldset>
                 )}
             </div>
         );

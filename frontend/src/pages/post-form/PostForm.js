@@ -52,13 +52,15 @@ class PostForm extends Component {
     }
 
     setValue = (event) => {
-        debugger;
+
         var object = {};
         object[event.target.id] = event.target.value;
-        this.setState({form: {
-            ...this.state.form,
-            ...object
-        }});
+        this.setState({
+            form: {
+                ...this.state.form,
+                ...object
+            }
+        });
     }
 
     handleSubmit = (e) => {
@@ -73,17 +75,17 @@ class PostForm extends Component {
     }
 
     componentDidMount() {
-        debugger;
+
         const {id} = this.props.match.params;
-        if(id) {
+        if (id) {
             this.props.getPost(id)
         }
     }
 
 
     componentWillReceiveProps(nextProps) {
-        debugger;
-        if (nextProps.post!== this.props.post) {
+
+        if (nextProps.post !== this.props.post) {
             const {post} = nextProps;
             this.setState({form: post})
         }
@@ -137,11 +139,11 @@ class PostForm extends Component {
                 </div>
 
 
-            {fireRedirect && (
-                <Redirect to={from || '/'}/>
-            )}
+                {fireRedirect && (
+                    <Redirect to={from || '/'}/>
+                )}
 
-        </div>);
+            </div>);
     }
 }
 

@@ -85,9 +85,6 @@ export const updateComment = (comment) => {
 }
 
 
-
-//todo: review api
-
 export const deleteComment = (commentId) =>
     fetch(`${api}/comments/${commentId}`, {
         method: 'DELETE',

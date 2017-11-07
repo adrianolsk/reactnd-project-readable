@@ -8,7 +8,7 @@ const defaultData = {
     timestamp: 1467166872634,
     title: 'Udacity is the best place to learn React',
     body: 'Everyone says so after all.',
-    author: 'thingtwo',
+      author: 'Mike Mello',
     category: 'react',
     voteScore: 6,
     deleted: false
@@ -18,11 +18,32 @@ const defaultData = {
     timestamp: 1468479767190,
     title: 'Learn Redux in 10 minutes!',
     body: 'Just kidding. It takes more than 10 minutes to learn technology.',
-    author: 'thingone',
+      author: 'Saulo Kent',
     category: 'redux',
     voteScore: -5,
     deleted: false
-  }
+  },
+    "6ni6ok3ym7mf1p33lxy": {
+        id: '6ni6ok3ym7mf1p33lxy',
+        timestamp: 1468479717190,
+        title: 'A query language for your API',
+        body: 'GraphQL is a query language for APIs and a runtime for fulfilling those queries with your existing data. GraphQL provides a complete and understandable description of the data in your API, gives clients the power to ask for exactly what they need and nothing more, makes it easier to evolve APIs over time, and enables powerful developer tools.',
+        author: 'Adriano',
+        category: 'graphql',
+        voteScore: 2,
+        deleted: false
+    }
+    ,
+    "6ni6ok3ym7mf1p33lud": {
+        id: '6ni6ok3ym7mf1p33lud',
+        timestamp: 1468429717190,
+        title: 'About Udacity',
+        body: 'Udacity is where lifelong learners come to learn the skills they need, to land the jobs they want, to build the lives they deserve.',
+        author: 'Paul Johnsen',
+        category: 'udacity',
+        voteScore: 3,
+        deleted: false
+    }
 }
 
 function getData (token) {

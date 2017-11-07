@@ -23,32 +23,41 @@ class CardPost extends Component {
 
 
     render() {
-        let {id, title, author, timestamp, category, score, voteScore, body} = this.props.post;
-        let comments = this.props.comments.filter(x=>x.parentId === id);
+        let {id, title, author, timestamp, category, voteScore, body} = this.props.post;
+        let comments = this.props.comments.filter(x => x.parentId === id);
         return (
             <div className="card">
+
                 <div className="title">
-                    {title}
+                    <Link to={`/${category}/${id}`}>
+                        {title}
+                    </Link>
                     <div className="buttons">
                         <Link className='button' to={`/edit/${id}`}><i className='fa fa-pencil'/></Link>
-                        <button onClick={() => this.onDelete(id)} className="remove"><i className='fa fa-trash '/></button>
+                        <button onClick={() => this.onDelete(id)} className="remove"><i className='fa fa-trash '/>
+                        </button>
                     </div>
                 </div>
                 <div className="content">
                     <Link to={`/${category}/${id}`}>
-                        {body.substring(0, 30)}...
+                        {body.substring(0, 100)}
+                        {body.length > 100 ? ( <b> ... Keep reading </b>  ) : ""}
                     </Link>
                 </div>
-                <div className="author">
-                    <div className={"letter " + author[0].toLowerCase()}>{author[0]}</div>
-                    <div className="name">{author}</div>
-                    <div className="time">{moment(timestamp).format('D MMM YYYY, h:mma')}</div>
-                </div>
-                <div className="footer">
-                    <div>
-                        <span  className="meta"><i className="fa fa-tag"/> {category}</span>
-                        <span  className="meta"><i className="fa fa-comments"/> {comments.length} Comments</span>
+                <Link to={`/${category}/${id}`}>
+                    <div className="author">
+                        <div className={"letter " + author[0].toLowerCase()}>{author[0]}</div>
+                        <div className="name">{author}</div>
+                        <div className="time">{moment(timestamp).format('D MMM YYYY, h:mma')}</div>
                     </div>
+                </Link>
+                <div className="footer">
+                    <Link to={`/${category}/${id}`}>
+                        <div>
+                            <span className="meta"><i className="fa fa-tag"/> {category}</span>
+                            <span className="meta"><i className="fa fa-comments"/> {comments.length} Comments</span>
+                        </div>
+                    </Link>
                     <div className="buttons">
                         <button onClick={() => this.onVote(id, 'upVote')}><i className='fa fa-thumbs-up'/></button>
                         <span>{voteScore}</span>
@@ -59,7 +68,6 @@ class CardPost extends Component {
         );
     }
 }
-
 
 
 const mapStateToProps = (state, props) => ({

@@ -44,12 +44,6 @@ class CommentForm extends Component {
         });
     }
 
-
-    // componentWillReceiveProps(nextProps) {
-    //     debugger;
-    //     this.setState({...this.state, ...nextProps.comment});
-    // }
-
     componentDidMount() {
         this.setState({...this.state, ...this.props.comment});
     }
@@ -78,32 +72,33 @@ class CommentForm extends Component {
             });
 
             this.clearForm();
-            if (this.props.onSave) {
-                this.props.onSave();
+            if (this.props.onDone) {
+                this.props.onDone();
             }
         }
     }
+
     render() {
         let {author, body, id} = this.state;
         const validator = validate(this.state);
         return (
             <div className='comment-box'>
+                <fieldset>
+                    <div className='header'>
+                        <b>  {id ? "Editing comment" : "Add a comment"}</b>
 
-                <div className='header'>
-                    <span></span>
-                    {id ? "Editing comment" : "Add a comment"}
-                </div>
-                <div className='comment-content form'>
-                    <fieldset>
+                    </div>
+                    <div className='comment-content form'>
+
                         <form onSubmit={this.handleSubmit}>
 
                             <ErrorMessages show={this.state.formSubmitted} errors={validator.errors}/>
 
                             <label htmlFor="">Name</label>
-                            <input type="text" id='author' value={author} onChange={this.setValue}/>
+                            <input autoComplete="off" type="text" id='author' value={author} onChange={this.setValue}/>
 
                             <label htmlFor="">Message</label>
-                            <input type="text" id='body' value={body} onChange={this.setValue}/>
+                            <input autoComplete="off" type="text" id='body' value={body} onChange={this.setValue}/>
 
                             <div className="form-buttons">
                                 {id ? ( <button type='button' className="cancel" onClick={this.onCancel}>
@@ -115,12 +110,13 @@ class CommentForm extends Component {
                                 </button>
                             </div>
                         </form>
-                    </fieldset>
-                </div>
-                <div className="footer-edit">
 
-                </div>
+                    </div>
+                    <div className="footer-edit">
 
+                    </div>
+
+                </fieldset>
             </div>
         );
     }
