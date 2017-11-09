@@ -37,15 +37,8 @@ class AuthorList extends Component {
     }
 }
 
-// export default AuthorList;
-
-
-
-
 const mapStateToProps = (state, props) => ({
     posts: state.posts.list
 });
-
-
 
 export default connect(mapStateToProps, null)(AuthorList);

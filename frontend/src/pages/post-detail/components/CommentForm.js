@@ -23,8 +23,6 @@ const validate = values => {
     return {errors, valid: errors.length === 0}
 }
 
-
-// Form inputs and controlled components may have some state handled by the component. (from Udacity rubric review)
 const initialState = {
     formSubmitted: false,
     author: '',
@@ -112,10 +110,6 @@ class CommentForm extends Component {
                         </form>
 
                     </div>
-                    <div className="footer-edit">
-
-                    </div>
-
                 </fieldset>
             </div>
         );

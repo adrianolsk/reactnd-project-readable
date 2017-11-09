@@ -39,7 +39,7 @@ class PostForm extends Component {
 
     constructor() {
         super();
-        // Form inputs and controlled components may have some state handled by the component. (from Udacity rubric review)
+
         this.state = {
             formSubmitted: false,
             form: {
@@ -82,7 +82,6 @@ class PostForm extends Component {
         }
     }
 
-
     componentWillReceiveProps(nextProps) {
 
         if (nextProps.post !== this.props.post) {
@@ -97,7 +96,6 @@ class PostForm extends Component {
         const {fireRedirect} = this.state;
         const {categories} = this.props;
         const {title, body, author, category} = this.state.form;
-
 
         return (
             <div className="main">
@@ -131,17 +129,13 @@ class PostForm extends Component {
                                 <option key={item.path} value={item.path}>{item.name}</option>
                             ))}
 
-
                         </select>
 
                         <button type="submit">salvar</button>
                     </form>
                 </div>
 
-
-                {fireRedirect && (
-                    <Redirect to={from || '/'}/>
-                )}
+                {fireRedirect && ( <Redirect to={from || '/'}/>)}
 
             </div>);
     }
@@ -152,12 +146,10 @@ const mapStateToProps = (state, props) => ({
     categories: state.categories
 });
 
-
 const mapDispatchToProps = dispatch => ({
     getPost: (postId) => dispatch(getPostAsync(postId)),
     savePost: (post) => dispatch(savePostsAsync(post))
 
 });
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostForm);

@@ -8,7 +8,6 @@ import moment from "moment";
 
 class PostDetail extends Component {
 
-
     constructor() {
         super();
         this.state = {};
@@ -28,7 +27,6 @@ class PostDetail extends Component {
             this.setState({fireRedirect: true})
         }
     }
-
 
     onVote = (postId, vote) => {
         this.props.votePost(postId, vote);
@@ -51,9 +49,12 @@ class PostDetail extends Component {
                     <div className="toolbar-actions">
                         <div className="tag"><i className="fa fa-tag"/>{category}</div>
                         <div className="buttons">
-                            <button onClick={() => this.onVote(id, 'upVote')}><i className='fa fa-thumbs-up'/></button>
+                            <button onClick={() => this.onVote(id, 'upVote')}>
+                                <i className='fa fa-thumbs-up'/>
+                            </button>
                             <span>{voteScore}</span>
-                            <button onClick={() => this.onVote(id, 'downVote')}><i className='fa fa-thumbs-down'/>
+                            <button onClick={() => this.onVote(id, 'downVote')}>
+                                <i className='fa fa-thumbs-down'/>
                             </button>
                         </div>
                     </div>
@@ -90,6 +91,5 @@ const mapDispatchToProps = dispatch => ({
     deletePost: (postId) => dispatch(deletePostAsync(postId)),
     votePost: (postId, vote) => dispatch(votePostAsync(postId, vote))
 });
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostDetail);

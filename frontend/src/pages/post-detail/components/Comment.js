@@ -37,13 +37,13 @@ class Comment extends Component {
                         <div className='comment-box'>
                             <div className="comment-header">
                                 <div className="author">
-                                    <div
-                                        className={"letter " + comment.author[0].toLowerCase()}>{comment.author[0].toUpperCase()}</div>
+                                    <div className={"letter " + comment.author[0].toLowerCase()}>
+                                        {comment.author[0].toUpperCase()}
+                                    </div>
                                     <div className="name">{comment.author}</div>
                                     <div className="time">{moment(comment.timestamp).fromNow()}</div>
                                 </div>
                                 <div className='buttons'>
-
                                     <button onClick={this.onEdit}>
                                         <i className="fa fa-pencil-square-o" aria-hidden="true"/>
                                     </button>
@@ -64,11 +64,13 @@ class Comment extends Component {
 
                                 </div>
                                 <div className="buttons">
-                                    <button onClick={() => this.props.onVote(comment.id, 'upVote')}><i
-                                        className='fa fa-thumbs-up'/></button>
+                                    <button onClick={() => this.props.onVote(comment.id, 'upVote')}>
+                                        <i className='fa fa-thumbs-up'/>
+                                    </button>
                                     <span>{comment.voteScore}</span>
-                                    <button onClick={() => this.props.onVote(comment.id, 'downVote')}><i
-                                        className='fa fa-thumbs-down'/></button>
+                                    <button onClick={() => this.props.onVote(comment.id, 'downVote')}>
+                                        <i className='fa fa-thumbs-down'/>
+                                    </button>
                                 </div>
                             </div>
                         </div>

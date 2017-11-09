@@ -25,7 +25,6 @@ class Home extends Component {
         if (!category) {
             this.props.getPosts();
         } else {
-
             this.props.getPostsFromCategory(category);
         }
     }
@@ -69,7 +68,6 @@ const mapDispatchToProps = dispatch => ({
     getPostsFromCategory: (category) => dispatch(getPostsFromCategoryAsync(category)),
     setCategory: (category) => dispatch(setCategory(category))
 });
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
 

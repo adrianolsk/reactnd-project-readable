@@ -58,7 +58,6 @@ function posts(state = {
             };
 
         case DELETE_POST:
-            debugger
             return {
                 ...state,
                 list: [...state.list.filter(x => x.id !== action.data)]
@@ -77,7 +76,6 @@ function posts(state = {
                 post: {...action.data}
             }
         }
-
 
         default:
             return state;
