@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import CommentForm from "./CommentForm";
 import Comment from "./Comment";
 import {deleteCommentAsync, voteCommentAsync} from "../../../actions/comments";
+import PropTypes from 'prop-types';
 
 class CommentList extends Component {
 
@@ -44,6 +45,9 @@ class CommentList extends Component {
     }
 }
 
+CommentList.propTypes = {
+    postId: PropTypes.string.isRequired
+}
 
 const mapStateToProps = (state, props) => ({
     comments: state.comments,

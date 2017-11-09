@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import {deletePostAsync, votePostAsync} from "../../../actions/posts";
 import {getCommentsAsync} from "../../../actions/comments";
-
+import PropTypes from 'prop-types';
 
 class CardPost extends Component {
 
@@ -75,6 +75,9 @@ class CardPost extends Component {
     }
 }
 
+CardPost.propTypes = {
+    post: PropTypes.object.isRequired,
+}
 
 const mapStateToProps = (state, props) => ({
     comments: state.comments

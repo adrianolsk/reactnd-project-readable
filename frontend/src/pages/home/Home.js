@@ -48,9 +48,7 @@ class Home extends Component {
                     {posts.length === 0 ? (
                         <div>
                             <h3>No posts in the topic yet... <Link to="/new">Add a new one</Link></h3>
-
                         </div>
-
                     ) : ""}
                 </div>
             </div>

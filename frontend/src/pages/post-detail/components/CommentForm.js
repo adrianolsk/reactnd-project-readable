@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {addCommentAsync} from "../../../actions/comments";
 import ErrorMessages from "../../../components/ErrorMessages";
-
+import PropTypes from 'prop-types';
 
 const validate = values => {
     const errors = []
@@ -114,6 +114,11 @@ class CommentForm extends Component {
             </div>
         );
     }
+}
+
+CommentForm.propTypes = {
+    postId: PropTypes.string.isRequired,
+    comment: PropTypes.object
 }
 
 const mapDispatchToProps = dispatch => ({

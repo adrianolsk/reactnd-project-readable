@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import moment from "moment";
-
+import PropTypes from 'prop-types';
 import CommentForm from "./CommentForm";
 
 class Comment extends Component {
@@ -79,6 +79,14 @@ class Comment extends Component {
             </div>
         );
     }
+}
+
+Comment.propTypes = {
+    postId: PropTypes.string.isRequired,
+    comment: PropTypes.object.isRequired,
+    onEdit: PropTypes.func.isRequired,
+    onVote: PropTypes.func.isRequired,
+    onDelete: PropTypes.func.isRequired
 }
 
 export default Comment;
