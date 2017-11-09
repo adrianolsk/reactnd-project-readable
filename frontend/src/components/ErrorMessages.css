@@ -3,8 +3,10 @@
     background-color: #d25d5d;
     border-radius: 8px;
     padding: 10px 0 10px 30px;
+}
 
-    font-size: 12px;
+.error-messages p {
+    font-size: 12px !important;
     font-weight: 300;
-    margin-bottom: 0px;
+    margin-bottom: 0px !important;
 }
